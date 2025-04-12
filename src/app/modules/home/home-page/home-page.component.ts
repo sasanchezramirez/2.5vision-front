@@ -117,6 +117,7 @@ export class HomePageComponent implements OnInit {
       this.selectedFile,
       this.visibilityValue,
       this.selectedWeather,
+      new Date(),
       username || undefined
     ).subscribe({
       next: (response) => {
