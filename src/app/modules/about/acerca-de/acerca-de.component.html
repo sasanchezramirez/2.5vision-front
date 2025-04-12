@@ -1,0 +1,79 @@
+<header>
+  <h1 class="logo">2.5<span>Vision</span></h1>
+</header>
+
+<div class="main-content pb-6">
+  <div class="about-container">
+    <h1 class="title">Acerca de Nosotros</h1>
+
+    <div class="about-section">
+      <h2 class="subtitle">Quiénes Somos</h2>
+      <p>Este es un párrafo de texto normal que puede utilizarse para describir la empresa o el proyecto. Puedes reemplazar este texto con información real sobre tu organización.</p>
+
+      <p>Otro párrafo con algunas palabras en <strong>negrita</strong> para enfatizar la importancia y otras en <em>cursiva</em> para destacar términos específicos.</p>
+    </div>
+
+    <div class="about-section">
+      <h2 class="subtitle">Nuestra Misión</h2>
+      <p>Aquí puedes describir la <strong>misión y los objetivos</strong> de tu organización. Este texto es solo un ejemplo y debe ser reemplazado con contenido real.</p>
+
+      <blockquote class="quote">
+        "Esta es una cita destacada que puede ser un lema o frase representativa de la empresa o alguna declaración importante."
+      </blockquote>
+    </div>
+
+    <div class="about-section">
+      <h3 class="section-title">Nuestros Valores</h3>
+      <ul class="values-list">
+        <li><span class="highlight">Innovación:</span> Descripción del valor relacionado con la innovación.</li>
+        <li><span class="highlight">Colaboración:</span> Explicación sobre cómo la colaboración es importante.</li>
+        <li><span class="highlight">Excelencia:</span> Detalle sobre el compromiso con la excelencia.</li>
+        <li><span class="highlight">Integridad:</span> Información sobre la ética y principios de la organización.</li>
+      </ul>
+    </div>
+
+    <div class="about-section">
+      <h3 class="section-title">Historia</h3>
+      <p>Un breve recorrido por la <em>historia de la organización</em>, desde sus inicios hasta la actualidad:</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2020</div>
+          <div class="timeline-content">
+            <h4 class="timeline-title">Fundación</h4>
+            <p>Descripción de los inicios del proyecto o empresa.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">2021</div>
+          <div class="timeline-content">
+            <h4 class="timeline-title">Crecimiento</h4>
+            <p>Detalles sobre la etapa de crecimiento y expansión.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">2022</div>
+          <div class="timeline-content">
+            <h4 class="timeline-title">Consolidación</h4>
+            <p>Información sobre logros y consolidación en el mercado.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <h3 class="section-title">Contacto</h3>
+      <p>Si deseas más información, puedes contactarnos a través de:</p>
+
+      <div class="contact-info">
+        <p><strong>Email:</strong> <a href="mailto:info@example.com">info@example.com</a></p>
+        <p><strong>Teléfono:</strong> +1 234 567 890</p>
+        <p><strong>Dirección:</strong> Calle Principal 123, Ciudad, País</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-bottom-nav [activeTab]="'about'" (tabChange)="onTabChange($event)"></app-bottom-nav>

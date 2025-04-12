@@ -1,0 +1,33 @@
+<header>
+  <h1 class="logo">2.5<span>Vision</span></h1>
+</header>
+
+<div class="main-content pb-6">
+  <div class="login-container">
+    <h2 class="section-title">Iniciar Sesión</h2>
+
+    <div class="login-form">
+      <div class="form-group">
+        <label for="username">Usuario</label>
+        <input type="text" id="username" placeholder="Ingresa tu usuario" [(ngModel)]="username">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" placeholder="Ingresa tu contraseña" [(ngModel)]="password">
+      </div>
+
+      <div class="forgot-password">
+        <a href="#">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <button class="btn-login" (click)="login()">Iniciar Sesión</button>
+
+      <div class="register-link">
+        ¿No tienes una cuenta? <a (click)="goToRegister()">Regístrate</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-bottom-nav [activeTab]="'login'" (tabChange)="onTabChange($event)"></app-bottom-nav>

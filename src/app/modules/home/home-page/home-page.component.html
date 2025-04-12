@@ -1,0 +1,85 @@
+<header>
+  <h1 class="logo">2.5<span>Vision</span></h1>
+  <div class="header-actions">
+    <div class="btn-icon btn-search"></div>
+    <div class="btn-icon btn-notification"></div>
+  </div>
+</header>
+
+<div class="main-content pb-6">
+  <div class="location-bar">
+    <div class="location-icon"></div>
+    <div class="location-text">Barcelona, España</div>
+  </div>
+
+  <div>
+    <div class="data-chip active">Tiempo real</div>
+    <div class="data-chip">Pronóstico</div>
+    <div class="data-chip">Histórico</div>
+  </div>
+
+  <div class="climate-indicator">
+    <div class="temperature">
+      <div class="indicator-value">24.7°C</div>
+      <div class="indicator-label">Temperatura</div>
+      <div class="indicator-bar temperature"></div>
+    </div>
+    <div class="humidity">
+      <div class="indicator-value">43%</div>
+      <div class="indicator-label">Humedad</div>
+      <div class="indicator-bar humidity"></div>
+    </div>
+  </div>
+
+  <div class="insight-card">
+    <div class="card-header">
+      <div class="card-title">Calidad del aire</div>
+    </div>
+    <div class="card-body">
+      <div class="data-visual">
+        <div class="data-dots"></div>
+        <div class="data-line"></div>
+      </div>
+      <div class="data-metrics">
+        <div class="metric">
+          <div class="metric-value">42</div>
+          <div class="metric-label">AQI</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">18μg</div>
+          <div class="metric-label">PM 2.5</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">6ppm</div>
+          <div class="metric-label">CO<sub>2</sub></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Predicción de partículas</h2>
+  <div class="prediction-scale">
+    <div class="scale-point">
+      <div class="scale-indicator"></div>
+      <div class="scale-label">Bajo</div>
+    </div>
+    <div class="scale-point">
+      <div class="scale-indicator"></div>
+      <div class="scale-label">Moderado</div>
+    </div>
+    <div class="scale-point active">
+      <div class="scale-indicator"></div>
+      <div class="scale-label">Medio</div>
+    </div>
+    <div class="scale-point">
+      <div class="scale-indicator"></div>
+      <div class="scale-label">Alto</div>
+    </div>
+    <div class="scale-point">
+      <div class="scale-indicator"></div>
+      <div class="scale-label">Severo</div>
+    </div>
+  </div>
+</div>
+
+<app-bottom-nav [activeTab]="'dashboard'" (tabChange)="onTabChange($event)"></app-bottom-nav>

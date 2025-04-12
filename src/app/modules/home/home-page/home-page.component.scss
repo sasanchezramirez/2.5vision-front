@@ -1,0 +1,196 @@
+header {
+  padding: 1.2rem 1rem;
+  position: relative;
+  border-bottom: 1px solid var(--header-border);
+}
+
+.logo {
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  font-size: var(--font-size-xl);
+
+  span {
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+}
+
+.main-content {
+  padding: var(--spacing-base);
+}
+
+.header-actions {
+  position: absolute;
+  right: 1rem;
+  top: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.btn-icon {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--btn-bg);
+  margin-left: var(--spacing-sm);
+
+  &:before {
+    content: '';
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: var(--color-text);
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+  }
+}
+
+.btn-search:before {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E");
+}
+
+.btn-notification:before {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z'/%3E%3C/svg%3E");
+}
+
+.location-bar {
+  display: flex;
+  align-items: center;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius-sm);
+  padding: 0.75rem 1rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+.location-icon {
+  margin-right: 0.75rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 3px;
+    background-color: var(--color-accent);
+  }
+}
+
+.location-text {
+  font-size: var(--font-size-md);
+  font-weight: 500;
+}
+
+.climate-indicator {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--spacing-xl);
+}
+
+.indicator-bar {
+  height: 3px;
+  border-radius: 3px;
+  background-color: rgba(255,255,255,0.1);
+  margin-top: var(--spacing-sm);
+  position: relative;
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 3px;
+  }
+}
+
+.indicator-value {
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+}
+
+.indicator-label {
+  font-size: var(--font-size-sm);
+  opacity: 0.6;
+}
+
+.indicator-bar.temperature:after {
+  width: 75%;
+  background-color: var(--color-error);
+}
+
+.indicator-bar.humidity:after {
+  width: 43%;
+  background-color: var(--color-info);
+}
+
+.temperature .indicator-value {
+  color: var(--color-error);
+}
+
+.humidity .indicator-value {
+  color: var(--color-info);
+}
+
+.prediction-scale {
+  display: flex;
+  justify-content: space-between;
+  margin: var(--spacing-base) 0;
+}
+
+.scale-point {
+  text-align: center;
+  flex: 1;
+  position: relative;
+
+  &.active {
+    .scale-indicator {
+      background-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(74, 122, 150, 0.2);
+    }
+
+    .scale-label {
+      opacity: 1;
+      color: var(--color-accent);
+      font-weight: 500;
+    }
+  }
+
+  &:not(:last-child):after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: calc(50% + 4px);
+    width: calc(100% - 8px);
+    height: 2px;
+    background-color: rgba(255,255,255,0.1);
+  }
+}
+
+.scale-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.2);
+  margin: 0 auto var(--spacing-sm);
+}
+
+.scale-label {
+  font-size: var(--font-size-xs);
+  opacity: 0.7;
+}

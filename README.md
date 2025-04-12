@@ -25,3 +25,12 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Some comands
+
+To create a new module `ng generate module modules/<name> --routing`
+
+To create a new componente `ng generate component modules/<module>/<component>`
+
+To create a new service `ng generate service services/<name>`

@@ -1,1 +1,153 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --color-bg: #0a0a0c;
+  --color-text: #e2e2e5;
+  --color-accent: #4a7a96;
+  --color-secondary: #25364f;
+  --color-tertiary: #5c284f;
+  --color-error: #ff7e67;
+  --color-info: #51adcf;
+
+  --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --font-size-xs: 0.65rem;
+  --font-size-sm: 0.75rem;
+  --font-size-md: 0.85rem;
+  --font-size-base: 0.9rem;
+  --font-size-lg: 1rem;
+  --font-size-xl: 1.2rem;
+  --font-size-2xl: 1.3rem;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 0.75rem;
+  --spacing-base: 1rem;
+  --spacing-lg: 1.25rem;
+  --spacing-xl: 1.5rem;
+  --spacing-2xl: 2rem;
+
+  --border-radius-sm: 0.5rem;
+  --border-radius-md: 0.75rem;
+  --border-radius-lg: 2rem;
+
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --header-border: rgba(255, 255, 255, 0.05);
+  --btn-bg: rgba(255, 255, 255, 0.05);
+  --dots-bg: rgba(255, 255, 255, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.data-chip {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--border-radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  margin-right: var(--spacing-sm);
+  background-color: var(--color-secondary);
+
+  &.active {
+    background-color: var(--color-accent);
+  }
+}
+
+.insight-card {
+  margin: var(--spacing-lg) 0;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-base);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  }
+
+  .card-title {
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: -0.3px;
+  }
+
+  .card-body {
+    padding: var(--spacing-base);
+  }
+}
+
+.data-visual {
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(180deg, var(--color-accent) 0%, var(--color-tertiary) 100%);
+  border-radius: var(--border-radius-sm);
+  position: relative;
+  overflow: hidden;
+
+  .data-dots {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(var(--dots-bg) 1px, transparent 1px);
+    background-size: 15px 15px;
+  }
+
+  .data-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    background: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,80 Q25,40 50,70 T100,60 T150,30 T200,50 T250,20 T300,50 T350,30 T400,70' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' fill='none' /%3E%3C/svg%3E");
+    background-size: cover;
+  }
+}
+
+.data-metrics {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-base) 0;
+
+  .metric {
+    flex: 1;
+
+    .metric-value {
+      font-size: var(--font-size-2xl);
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    .metric-label {
+      font-size: var(--font-size-sm);
+      text-transform: uppercase;
+      opacity: 0.6;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+.pb-6 {
+  padding-bottom: 6rem;
+}
+
+.section-title {
+  margin: var(--spacing-xl) 0 var(--spacing-base);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+}
