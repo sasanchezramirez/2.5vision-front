@@ -1,34 +1,17 @@
 <header>
   <h1 class="logo">2.5<span>Vision</span></h1>
   <div class="header-actions">
-    <div class="btn-icon btn-search"></div>
-    <div class="btn-icon btn-notification"></div>
+
   </div>
 </header>
 
 <div class="main-content pb-6">
-  <div class="location-bar">
-    <div class="location-icon"></div>
-    <div class="location-text">Barcelona, España</div>
-  </div>
-
-  <div>
-    <div class="data-chip active">Tiempo real</div>
-    <div class="data-chip">Pronóstico</div>
-    <div class="data-chip">Histórico</div>
-  </div>
-
-  <div class="climate-indicator">
-    <div class="temperature">
-      <div class="indicator-value">24.7°C</div>
-      <div class="indicator-label">Temperatura</div>
-      <div class="indicator-bar temperature"></div>
-    </div>
-    <div class="humidity">
-      <div class="indicator-value">43%</div>
-      <div class="indicator-label">Humedad</div>
-      <div class="indicator-bar humidity"></div>
-    </div>
+  <div class="welcome-section">
+    <h1 class="welcome-title">Bienvenido a 2.5Vision</h1>
+    <p class="welcome-text">
+      Esta plataforma te permite analizar y comparar imágenes para determinar patrones de calidad visual.
+      Carga tus imágenes, compara resultados y obtén información valiosa sobre la calidad visual de tus contenidos.
+    </p>
   </div>
 
   <div class="insight-card">
@@ -57,28 +40,53 @@
     </div>
   </div>
 
-  <h2 class="section-title">Predicción de partículas</h2>
-  <div class="prediction-scale">
-    <div class="scale-point">
-      <div class="scale-indicator"></div>
-      <div class="scale-label">Bajo</div>
+  <div class="insight-card">
+    <div class="card-header">
+      <div class="card-title">Carga tu imagen para análisis</div>
     </div>
-    <div class="scale-point">
-      <div class="scale-indicator"></div>
-      <div class="scale-label">Moderado</div>
+    <div class="card-body">
+      <div class="upload-container" (click)="triggerFileInput()" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+        <input type="file" #fileInput hidden (change)="onFileSelected($event)" accept="image/*">
+        <div class="upload-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+        </div>
+        <p class="upload-text">Arrastra y suelta una imagen aquí o haz clic para seleccionar</p>
+      </div>
     </div>
-    <div class="scale-point active">
-      <div class="scale-indicator"></div>
-      <div class="scale-label">Medio</div>
+  </div>
+
+  <h2 class="section-title">Comparación de Ejemplos</h2>
+  <div class="comparison-container">
+    <div class="comparison-item">
+      <div class="comparison-header correct">Ejemplo Correcto</div>
+      <div class="comparison-image">
+        <img src="assets/images/ejemplo-correcto.jpg" alt="Ejemplo de imagen correcta">
+      </div>
     </div>
-    <div class="scale-point">
-      <div class="scale-indicator"></div>
-      <div class="scale-label">Alto</div>
+    <div class="comparison-item">
+      <div class="comparison-header incorrect">Ejemplo Incorrecto</div>
+      <div class="comparison-image">
+        <img src="assets/images/ejemplo-incorrecto.jpg" alt="Ejemplo de imagen incorrecta">
+      </div>
     </div>
-    <div class="scale-point">
-      <div class="scale-indicator"></div>
-      <div class="scale-label">Severo</div>
-    </div>
+  </div>
+
+  <div class="comparison-explanation">
+    <h3 class="explanation-title">¿Por qué es importante la calidad visual?</h3>
+    <p class="explanation-text">
+      <strong>Imagen correcta:</strong> Muestra una buena calidad visual con detalles claros,
+      buena iluminación y enfoque adecuado. Estas características permiten una mejor interpretación
+      y análisis de los elementos visuales.
+    </p>
+    <p class="explanation-text">
+      <strong>Imagen incorrecta:</strong> Presenta problemas como desenfoque, mala iluminación
+      o distorsiones que dificultan la correcta interpretación de los elementos visuales.
+      Esto puede llevar a análisis incorrectos y conclusiones erróneas.
+    </p>
   </div>
 </div>
 
