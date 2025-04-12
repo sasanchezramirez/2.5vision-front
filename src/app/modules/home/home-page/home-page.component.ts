@@ -1,16 +1,25 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../../../shared/shared.module';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  styleUrls: ['./home-page.component.scss'],
+  standalone: true,
+  imports: [FormsModule, SharedModule]
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef;
   selectedFile: File | null = null;
 
+  visibilityValue: number = 5;
+
   constructor(private router: Router) {}
+
+  ngOnInit(): void {
+  }
 
   onTabChange(tab: string): void {
     if (tab !== 'dashboard') {
@@ -30,10 +39,10 @@ export class HomePageComponent {
     this.fileInput.nativeElement.click();
   }
 
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.selectedFile = input.files[0];
+  onFileSelected(event: any): void {
+    const files = event.target.files;
+    if (files.length > 0) {
+      this.selectedFile = files[0];
       console.log('Archivo seleccionado:', this.selectedFile);
       // Aquí podrías procesar el archivo o enviarlo a un servidor
     }
@@ -48,10 +57,16 @@ export class HomePageComponent {
     event.preventDefault();
     event.stopPropagation();
 
-    if (event.dataTransfer?.files.length) {
+    if (event.dataTransfer && event.dataTransfer.files.length > 0) {
       this.selectedFile = event.dataTransfer.files[0];
       console.log('Archivo arrastrado:', this.selectedFile);
       // Aquí podrías procesar el archivo o enviarlo a un servidor
     }
+  }
+
+  onVisibilityChange(event: Event): void {
+    // Actualizar el valor desde el evento
+    const inputElement = event.target as HTMLInputElement;
+    this.visibilityValue = parseInt(inputElement.value, 10);
   }
 }

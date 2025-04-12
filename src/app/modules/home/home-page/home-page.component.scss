@@ -392,6 +392,39 @@ header {
 .visibility-slider {
   width: 100%;
   padding: 1rem 0;
+  position: relative;
+
+  .slider-value-display {
+    width: 100%;
+    position: relative;
+    height: 24px;
+    margin-bottom: 8px;
+
+    .current-value {
+      position: absolute;
+      top: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      background-color: var(--color-accent, #4a7a96);
+      border-radius: 4px;
+      padding: 2px 8px;
+      transform: translateX(-50%);
+      z-index: 2;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -6px;
+        border-width: 6px;
+        border-style: solid;
+        border-color: var(--color-accent, #4a7a96) transparent transparent transparent;
+      }
+    }
+  }
 
   .slider {
     -webkit-appearance: none;

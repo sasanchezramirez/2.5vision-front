@@ -45,7 +45,11 @@
     </div>
     <div class="card-body">
       <div class="visibility-slider">
-        <input type="range" min="0" max="10" step="1" value="5" class="slider" id="visibilitySlider">
+        <div class="slider-value-display">
+          <span class="current-value" [style.left]="(visibilityValue / 10 * 100) + '%'">{{visibilityValue}}</span>
+        </div>
+        <input type="range" min="0" max="10" step="1" [value]="visibilityValue" class="slider" id="visibilitySlider"
+               (input)="onVisibilityChange($event)">
         <div class="slider-values">
           <div>0</div>
           <div>5</div>
