@@ -70,32 +70,23 @@
     <div class="card-body">
       <div class="weather-options">
         <div class="weather-grid">
-          <div class="weather-option">
-            <input type="radio" id="tormenta" name="clima" value="tormenta">
-            <label for="tormenta">Tormenta</label>
-          </div>
-          <div class="weather-option">
-            <input type="radio" id="lluvia" name="clima" value="lluvia">
-            <label for="lluvia">Lluvia</label>
-          </div>
-          <div class="weather-option">
-            <input type="radio" id="brisa" name="clima" value="brisa">
-            <label for="brisa">Brisa</label>
-          </div>
-          <div class="weather-option">
-            <input type="radio" id="nublado" name="clima" value="nublado">
-            <label for="nublado">Nublado pero sin lluvia</label>
-          </div>
-          <div class="weather-option">
-            <input type="radio" id="soleado" name="clima" value="soleado">
-            <label for="soleado">Soleado</label>
-          </div>
-          <div class="weather-option">
-            <input type="radio" id="despejado" name="clima" value="despejado">
-            <label for="despejado">Totalmente despejado</label>
+          <div class="weather-option" *ngFor="let option of weatherOptions">
+            <input type="radio" [id]="option.value" name="clima" [value]="option.value" [(ngModel)]="selectedWeather">
+            <label [for]="option.value">{{option.label}}</label>
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="card-footer">
+      <button class="submit-button" [disabled]="!selectedFile || !selectedWeather" (click)="uploadImage()">
+        <span *ngIf="!isUploading">Enviar datos</span>
+        <span *ngIf="isUploading" class="loading">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </span>
+      </button>
     </div>
   </div>
 
