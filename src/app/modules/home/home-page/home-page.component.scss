@@ -196,7 +196,6 @@ header {
 }
 
 .welcome-section {
-  text-align: center;
   margin-bottom: var(--spacing-xl);
 }
 
@@ -208,10 +207,9 @@ header {
 }
 
 .welcome-text {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
-  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -387,5 +385,135 @@ header {
 @media (max-width: 768px) {
   .comparison-container {
     grid-template-columns: 1fr;
+  }
+}
+
+// Estilos para el slider de visibilidad
+.visibility-slider {
+  width: 100%;
+  padding: 1rem 0;
+
+  .slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    outline: none;
+    margin-bottom: 1rem;
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #fff;
+      cursor: pointer;
+      border: 2px solid var(--color-accent, #4a7a96);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+
+    &::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #fff;
+      cursor: pointer;
+      border: 2px solid var(--color-accent, #4a7a96);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .slider-values {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+
+    div {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #fff;
+    }
+  }
+
+  .slider-hints {
+    p {
+      margin: 0;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.85);
+
+      strong {
+        color: #fff;
+        font-weight: 600;
+        margin-right: 0.25rem;
+      }
+    }
+  }
+}
+
+// Estilos para las opciones de clima
+.weather-options {
+  width: 100%;
+  padding: 0.5rem 0;
+
+  .weather-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .weather-option {
+    position: relative;
+    padding: 0.75rem;
+
+    input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+
+      &:checked + label {
+        background-color: rgba(var(--color-accent-rgb, 74, 122, 150), 0.2);
+        border-color: var(--color-accent, #4a7a96);
+
+        &:before {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      border-radius: var(--border-radius-sm, 8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.05);
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:before {
+        content: '';
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-right: 0.75rem;
+        border-radius: 50%;
+        border: 2px solid var(--color-accent, #4a7a96);
+        background-color: transparent;
+        box-sizing: border-box;
+        background-clip: content-box;
+        padding: 2px;
+        transform: scale(0.8);
+        opacity: 0.5;
+        transition: all 0.2s ease;
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
   }
 }

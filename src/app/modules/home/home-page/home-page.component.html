@@ -7,18 +7,21 @@
 
 <div class="main-content pb-6">
   <div class="welcome-section">
-    <h1 class="welcome-title">Bienvenido a 2.5Vision</h1>
+    <h1>Gracias por contribuir a este proyecto</h1>
+    <br>
     <p class="welcome-text">
-      Esta plataforma te permite analizar y comparar imágenes para determinar patrones de calidad visual.
-      Carga tus imágenes, compara resultados y obtén información valiosa sobre la calidad visual de tus contenidos.
+      Para entender de qué se trata este proyecto puedes ir a la sección de <a href="/about">Acerca de</a>.
+      La fomran en que puedes contribuir es subiendo una imagen donde se vea la panorámica de donde estés,
+      en donde se pueda ver una porción de cielo y algún otro elemento de referencia que se vea a lo lejos.
+      La información que se obtendrá de esta imagen está detallada en la documentacón del proyecto, en donde además
+      se disponibiliza el código fuente para que cualquiera pueda evidencia qué datos se están obteniendo con tu ayuda.
     </p>
   </div>
 
 
-
   <div class="insight-card">
     <div class="card-header">
-      <div class="card-title">Carga tu imagen para análisis</div>
+      <div class="card-title">Paso 1: Carga tu imagen para análisis</div>
     </div>
     <div class="card-body">
       <div class="upload-container data-visual" (click)="triggerFileInput()" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
@@ -33,6 +36,60 @@
             </svg>
           </div>
           <p class="upload-text">Arrastra y suelta una imagen aquí o haz clic para seleccionar</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-header">
+      <div class="card-title">Paso 2: Da una estimación de visibilidad de 1 a 10</div>
+    </div>
+    <div class="card-body">
+      <div class="visibility-slider">
+        <input type="range" min="0" max="10" step="1" value="5" class="slider" id="visibilitySlider">
+        <div class="slider-values">
+          <div>0</div>
+          <div>5</div>
+          <div>10</div>
+        </div>
+        <div class="slider-hints">
+          <p><strong>0:</strong> No se ve nada</p>
+          <p><strong>3:</strong> Se ve todo muy borroso, con bruma</p>
+          <p><strong>7:</strong> Buena visibilidad</p>
+          <p><strong>10:</strong> Se ve todo muy nítido</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-header">
+      <div class="card-title">Paso 3: Ingresa una de las opciones que más se adecue al clima en este momento</div>
+    </div>
+    <div class="card-body">
+      <div class="weather-options">
+        <div class="weather-grid">
+          <div class="weather-option">
+            <input type="radio" id="tormenta" name="clima" value="tormenta">
+            <label for="tormenta">Tormenta</label>
+          </div>
+          <div class="weather-option">
+            <input type="radio" id="lluvia" name="clima" value="lluvia">
+            <label for="lluvia">Lluvia</label>
+          </div>
+          <div class="weather-option">
+            <input type="radio" id="brisa" name="clima" value="brisa">
+            <label for="brisa">Brisa</label>
+          </div>
+          <div class="weather-option">
+            <input type="radio" id="nublado" name="clima" value="nublado">
+            <label for="nublado">Nublado pero sin lluvia</label>
+          </div>
+          <div class="weather-option">
+            <input type="radio" id="soleado" name="clima" value="soleado">
+            <label for="soleado">Soleado</label>
+          </div>
+          <div class="weather-option">
+            <input type="radio" id="despejado" name="clima" value="despejado">
+            <label for="despejado">Totalmente despejado</label>
+          </div>
         </div>
       </div>
     </div>
