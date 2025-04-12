@@ -24,7 +24,7 @@
       <div class="card-title">Paso 1: Carga tu imagen para análisis</div>
     </div>
     <div class="card-body">
-      <div class="upload-container data-visual" (click)="triggerFileInput()" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+      <div class="upload-container data-visual" (click)="triggerFileInput()" (dragover)="onDragOver($event)" (drop)="onDrop($event)" *ngIf="!selectedFile">
         <div class="data-dots"></div>
         <input type="file" #fileInput hidden (change)="onFileSelected($event)" accept="image/*">
         <div class="upload-content">
@@ -36,6 +36,22 @@
             </svg>
           </div>
           <p class="upload-text">Arrastra y suelta una imagen aquí o haz clic para seleccionar</p>
+        </div>
+      </div>
+
+      <!-- Vista previa de la imagen -->
+      <div class="preview-container" *ngIf="selectedFile">
+        <div class="preview-image">
+          <img [src]="previewUrl" alt="Vista previa de la imagen">
+        </div>
+        <div class="preview-actions">
+          <button class="preview-button" (click)="removeSelectedFile()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+            Cambiar imagen
+          </button>
         </div>
       </div>
     </div>
@@ -90,34 +106,53 @@
     </div>
   </div>
 
+  <!-- Mensaje de éxito -->
+  <div class="success-message" *ngIf="uploadSuccess">
+    <div class="success-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+      </svg>
+    </div>
+    <h2 class="success-title">¡Gracias por tu contribución!</h2>
+    <p class="success-text">Tu imagen ha sido cargada correctamente y será procesada en breve.</p>
+    <button class="success-button" (click)="resetForm()">Cargar otra imagen</button>
+  </div>
+
   <h2 class="section-title">Comparación de Ejemplos</h2>
   <div class="comparison-container">
     <div class="comparison-item">
       <div class="comparison-header correct">Ejemplo Correcto</div>
       <div class="comparison-image">
-        <img src="assets/images/ejemplo-correcto.jpg" alt="Ejemplo de imagen correcta">
+        <img src="assets/images/medellin-high-visibility.png" alt="Ejemplo de imagen correcta">
+      </div>
+      <div class="comparison-explanation">
+        <p>
+          <strong>Imagen correcta:</strong>
+        </p>
+        <ul class="check-list correct">
+          <li>Muestra una referencia clara en el fondo</li>
+          <li>La iluminación es indirecta (no hay luz directa en la imagen)</li>
+          <li>Se ve una porción de cielo</li>
+        </ul>
       </div>
     </div>
     <div class="comparison-item">
       <div class="comparison-header incorrect">Ejemplo Incorrecto</div>
       <div class="comparison-image">
-        <img src="assets/images/ejemplo-incorrecto.jpg" alt="Ejemplo de imagen incorrecta">
+        <img src="assets/images/ejemplo-incorrecto.jpeg" alt="Ejemplo de imagen incorrecta">
+      </div>
+      <div class="comparison-explanation">
+        <p>
+          <strong>Imagen incorrecta:</strong>
+        </p>
+        <ul class="check-list incorrect">
+          <li>El cielo ocupa toda la imagen</li>
+          <li>El sol está directo en la imagen</li>
+          <li>No hay referencia en el fondo</li>
+        </ul>
       </div>
     </div>
-  </div>
-
-  <div class="comparison-explanation">
-    <h3 class="explanation-title">¿Por qué es importante la calidad visual?</h3>
-    <p class="explanation-text">
-      <strong>Imagen correcta:</strong> Muestra una buena calidad visual con detalles claros,
-      buena iluminación y enfoque adecuado. Estas características permiten una mejor interpretación
-      y análisis de los elementos visuales.
-    </p>
-    <p class="explanation-text">
-      <strong>Imagen incorrecta:</strong> Presenta problemas como desenfoque, mala iluminación
-      o distorsiones que dificultan la correcta interpretación de los elementos visuales.
-      Esto puede llevar a análisis incorrectos y conclusiones erróneas.
-    </p>
   </div>
 </div>
 

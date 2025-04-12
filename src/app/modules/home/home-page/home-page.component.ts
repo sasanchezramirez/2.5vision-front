@@ -19,6 +19,8 @@ export class HomePageComponent implements OnInit {
   selectedWeather: string = '';
   isUploading: boolean = false;
   visibilityValue: number = 5;
+  previewUrl: string | ArrayBuffer | null = null;
+  uploadSuccess: boolean = false;
 
   weatherOptions = [
     { value: 'tormenta', label: 'Tormenta' },
@@ -56,8 +58,26 @@ export class HomePageComponent implements OnInit {
     const files = event.target.files;
     if (files.length > 0) {
       this.selectedFile = files[0];
+      this.createImagePreview();
       console.log('Archivo seleccionado:', this.selectedFile);
     }
+  }
+
+  createImagePreview(): void {
+    if (!this.selectedFile) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.previewUrl = e.target?.result || null;
+    };
+    reader.readAsDataURL(this.selectedFile);
+  }
+
+  removeSelectedFile(): void {
+    this.selectedFile = null;
+    this.previewUrl = null;
   }
 
   onDragOver(event: DragEvent): void {
@@ -71,6 +91,7 @@ export class HomePageComponent implements OnInit {
 
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
       this.selectedFile = event.dataTransfer.files[0];
+      this.createImagePreview();
       console.log('Archivo arrastrado:', this.selectedFile);
     }
   }
@@ -101,18 +122,22 @@ export class HomePageComponent implements OnInit {
       next: (response) => {
         console.log('Imagen subida con éxito:', response);
         this.isUploading = false;
-        // Reiniciar el formulario o mostrar mensaje de éxito
-        this.selectedFile = null;
-        this.selectedWeather = '';
-        this.visibilityValue = 5;
-
-        // Aquí podrías mostrar un mensaje de éxito
+        this.uploadSuccess = true;
       },
       error: (error) => {
         console.error('Error al subir la imagen:', error);
         this.isUploading = false;
-        // Aquí podrías mostrar un mensaje de error
+        // Mostrar mensaje de error
+        alert('Hubo un error al subir la imagen. Por favor, intente de nuevo.');
       }
     });
+  }
+
+  resetForm(): void {
+    this.selectedFile = null;
+    this.previewUrl = null;
+    this.selectedWeather = '';
+    this.visibilityValue = 5;
+    this.uploadSuccess = false;
   }
 }
