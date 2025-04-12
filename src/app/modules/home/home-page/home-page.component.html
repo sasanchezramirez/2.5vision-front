@@ -14,47 +14,26 @@
     </p>
   </div>
 
-  <div class="insight-card">
-    <div class="card-header">
-      <div class="card-title">Calidad del aire</div>
-    </div>
-    <div class="card-body">
-      <div class="data-visual">
-        <div class="data-dots"></div>
-        <div class="data-line"></div>
-      </div>
-      <div class="data-metrics">
-        <div class="metric">
-          <div class="metric-value">42</div>
-          <div class="metric-label">AQI</div>
-        </div>
-        <div class="metric">
-          <div class="metric-value">18μg</div>
-          <div class="metric-label">PM 2.5</div>
-        </div>
-        <div class="metric">
-          <div class="metric-value">6ppm</div>
-          <div class="metric-label">CO<sub>2</sub></div>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <div class="insight-card">
     <div class="card-header">
       <div class="card-title">Carga tu imagen para análisis</div>
     </div>
     <div class="card-body">
-      <div class="upload-container" (click)="triggerFileInput()" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+      <div class="upload-container data-visual" (click)="triggerFileInput()" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+        <div class="data-dots"></div>
         <input type="file" #fileInput hidden (change)="onFileSelected($event)" accept="image/*">
-        <div class="upload-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="17 8 12 3 7 8"></polyline>
-            <line x1="12" y1="3" x2="12" y2="15"></line>
-          </svg>
+        <div class="upload-content">
+          <div class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+          </div>
+          <p class="upload-text">Arrastra y suelta una imagen aquí o haz clic para seleccionar</p>
         </div>
-        <p class="upload-text">Arrastra y suelta una imagen aquí o haz clic para seleccionar</p>
       </div>
     </div>
   </div>
