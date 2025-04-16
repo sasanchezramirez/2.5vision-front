@@ -28,8 +28,10 @@ export class LoginComponent {
 
   onTabChange(tab: string): void {
     if (tab !== 'login') {
-      if (tab === 'home') {
+      if (tab === 'dashboard') {
         this.router.navigate(['/']);
+      } else if (tab === 'about') {
+        this.router.navigate(['/about']);
       } else {
         this.router.navigate(['/auth', tab]);
       }

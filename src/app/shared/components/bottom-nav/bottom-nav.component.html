@@ -3,17 +3,17 @@
     <div class="nav-icon icon-dashboard"></div>
     <div>Dashboard</div>
   </div>
-
+  <div class="nav-item" [class.active]="activeTab === 'login'" (click)="setActiveTab('login')">
+    <div class="nav-icon icon-user"></div>
+    <div>Login</div>
+  </div>
   <div class="nav-item" [class.active]="activeTab === 'about'" (click)="setActiveTab('about')">
     <div class="nav-icon icon-info"></div>
     <div>Acerca de</div>
   </div>
   <!--
   Elemento de navegación para el tab 'login'
-  <div class="nav-item" [class.active]="activeTab === 'login'" (click)="setActiveTab('login')">
-    <div class="nav-icon icon-user"></div>
-    <div>Login</div>
-  </div>
+
   -->
   <!--
   Elemento de navegación para el tab 'register'
