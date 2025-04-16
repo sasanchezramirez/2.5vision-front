@@ -1,0 +1,44 @@
+// Variables globales para la aplicación
+
+// Colores primarios
+$color-primary: #5d8ba7;
+$color-primary-light: #6f9db9;
+$color-primary-dark: #4a7a96;
+
+// Colores secundarios
+$color-secondary: #5c284f;
+$color-secondary-light: #6d3960;
+$color-secondary-dark: #4b173e;
+
+// Colores de estado
+$color-success: #4ADE80;
+$color-success-bg: rgba(74, 222, 128, 0.15);
+$color-error: #F87171;
+$color-error-bg: rgba(248, 113, 113, 0.15);
+
+// Colores de fondo y superficie
+$color-bg-dark: rgba(0, 0, 0, 0.25);
+$color-bg-card: rgba(255, 255, 255, 0.08);
+$color-border: rgba(255, 255, 255, 0.15);
+$color-border-hover: rgba(255, 255, 255, 0.25);
+
+// Colores de texto
+$color-text-primary: rgba(255, 255, 255, 1);
+$color-text-secondary: rgba(255, 255, 255, 0.85);
+$color-text-tertiary: rgba(255, 255, 255, 0.7);
+
+// Colores de focus
+$color-focus-ring: rgba(74, 222, 128, 0.5);
+
+// Gradientes
+$gradient-primary: linear-gradient(135deg, $color-primary, $color-primary-dark);
+$gradient-secondary: linear-gradient(135deg, $color-secondary, $color-secondary-dark);
+$gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+
+// Efectos
+$shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+$shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.18);
+$transition-fast: all 0.2s ease;
+$transition-default: all 0.3s ease;
+$spacing-section: 2rem;
