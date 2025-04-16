@@ -1,50 +1,54 @@
-// Sistema de colores consistente
+@use '../../../shared/styles/index' as styles;
+
 :host {
-  // Colores primarios
-  --color-primary: #5d8ba7;
-  --color-primary-light: #6f9db9;
-  --color-primary-dark: #4a7a96;
-
-  // Colores secundarios
-  --color-secondary: #5c284f;
-  --color-secondary-light: #6d3960;
-  --color-secondary-dark: #4b173e;
-
-  // Colores de estado
-  --color-success: #4ADE80;
-  --color-success-bg: rgba(74, 222, 128, 0.15);
-  --color-error: #F87171;
-  --color-error-bg: rgba(248, 113, 113, 0.15);
-
-  // Colores de fondo y superficie
-  --color-bg-dark: rgba(0, 0, 0, 0.25);
-  --color-bg-card: rgba(255, 255, 255, 0.08);
-  --color-border: rgba(255, 255, 255, 0.15);
-  --color-border-hover: rgba(255, 255, 255, 0.25);
-
-  // Colores de texto
-  --color-text-primary: rgba(255, 255, 255, 1);
-  --color-text-secondary: rgba(255, 255, 255, 0.85);
-  --color-text-tertiary: rgba(255, 255, 255, 0.7);
-
-  // Colores de focus
-  --color-focus-ring: rgba(74, 222, 128, 0.5);
-
-  // Gradientes
-  --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-  --gradient-secondary: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-dark));
-  --gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-
-  // Efectos
-  --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.18);
-  --transition-fast: all 0.2s ease;
-  --transition-default: all 0.3s ease;
-  --spacing-section: 2rem;
-
-  // Mensajes y feedback
+  // Uso de variables importadas
+  --color-primary: #{styles.$color-primary};
+  --color-primary-light: #{styles.$color-primary-light};
+  --color-primary-dark: #{styles.$color-primary-dark};
+  --color-secondary: #{styles.$color-secondary};
+  --color-secondary-light: #{styles.$color-secondary-light};
+  --color-secondary-dark: #{styles.$color-secondary-dark};
+  --color-success: #{styles.$color-success};
+  --color-success-bg: #{styles.$color-success-bg};
+  --color-error: #{styles.$color-error};
+  --color-error-bg: #{styles.$color-error-bg};
+  --color-bg-dark: #{styles.$color-bg-dark};
+  --color-bg-card: #{styles.$color-bg-card};
+  --color-border: #{styles.$color-border};
+  --color-border-hover: #{styles.$color-border-hover};
+  --color-text-primary: #{styles.$color-text-primary};
+  --color-text-secondary: #{styles.$color-text-secondary};
+  --color-text-tertiary: #{styles.$color-text-tertiary};
+  --color-focus-ring: #{styles.$color-focus-ring};
+  --gradient-primary: #{styles.$gradient-primary};
+  --gradient-secondary: #{styles.$gradient-secondary};
+  --gradient-card: #{styles.$gradient-card};
+  --shadow-sm: #{styles.$shadow-sm};
+  --shadow-md: #{styles.$shadow-md};
+  --shadow-lg: #{styles.$shadow-lg};
+  --transition-fast: #{styles.$transition-fast};
+  --transition-default: #{styles.$transition-default};
+  --spacing-section: #{styles.$spacing-section};
   --color-feedback-bg: rgba(0, 0, 0, 0.3);
+}
+
+// Aplicando mixins
+a, button, input, select, textarea, [tabindex]:not([tabindex="-1"]) {
+  @include styles.focus-visible;
+}
+
+.sr-only {
+  @include styles.sr-only;
+}
+
+// Aplicando mixins para textos
+.hero-text, .section-description, .upload-text, .comparison-explanation p, .check-list li {
+  @include styles.readable-text;
+}
+
+// Aplicando mixins para botones
+.submit-button {
+  @include styles.loading-button;
 }
 
 // Estilos de accesibilidad para foco mediante teclado
@@ -840,13 +844,35 @@ header {
   .form-feedback {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
-    padding: 0.8rem 1rem;
-    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
     width: 100%;
     max-width: 450px;
     margin: 0 auto;
     transition: all 0.3s ease;
+    background-color: var(--color-feedback-bg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--color-text-primary);
+    font-weight: 500;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+    animation: pulse 2s infinite ease-in-out;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23FFFFFF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'%3E%3C/circle%3E%3Cline x1='12' y1='8' x2='12' y2='12'%3E%3C/line%3E%3Cline x1='12' y1='16' x2='12.01' y2='16'%3E%3C/line%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-right: 8px;
+      opacity: 0.9;
+    }
 
     &.error {
       background-color: var(--color-error-bg, rgba(255, 76, 76, 0.1));
@@ -930,6 +956,21 @@ header {
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
