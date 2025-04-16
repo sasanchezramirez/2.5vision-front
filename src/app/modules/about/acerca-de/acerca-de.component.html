@@ -1,77 +1,95 @@
 <header>
-  <h1 class="logo">2.5<span>Vision</span></h1>
+  <div class="logo-container">
+    <img src="assets/2_5_vision_logo.svg" alt="2.5Vision Logo" class="logo-image">
+  </div>
+  <div class="header-actions">
+  </div>
 </header>
 
 <div class="main-content pb-6">
   <div class="about-container">
-    <h1 class="title">Acerca de Nosotros</h1>
-
+    <h1 class="title">Conoce más del proyecto</h1>
+    <blockquote class="quote">
+      «Solo donde hay vida hay también voluntad: pero no voluntad de vida, sino -así te lo enseño yo- ¡voluntad de poder!»
+      <br>
+      <cite>- Nietzsche, F.: Así habló Zaratustra. De la superación de mí mismo, p 171-172</cite>
+    </blockquote>
     <div class="about-section">
-      <h2 class="subtitle">Quiénes Somos</h2>
-      <p>Este es un párrafo de texto normal que puede utilizarse para describir la empresa o el proyecto. Puedes reemplazar este texto con información real sobre tu organización.</p>
-
-      <p>Otro párrafo con algunas palabras en <strong>negrita</strong> para enfatizar la importancia y otras en <em>cursiva</em> para destacar términos específicos.</p>
+      <h2 class="subtitle">¿Quién está detrás?</h2>
+      <p>El parcero que está haciendo esto es Santiago, un apasionado por crear. Puedes concer más de este personaje en su página web <a href="https://gaugelife.co" target="_blank">gaugelife.co</a></p>
+      <p class="note">(Perdón por hablar en tercera persona, es que era para no perder el ritmo)</p>
     </div>
 
     <div class="about-section">
-      <h2 class="subtitle">Nuestra Misión</h2>
-      <p>Aquí puedes describir la <strong>misión y los objetivos</strong> de tu organización. Este texto es solo un ejemplo y debe ser reemplazado con contenido real.</p>
+      <h2 class="subtitle">¿Qué es 2.5 Vision?</h2>
+      <p>El proyecto busca concluir la hipótesis de que a partir del análisis de imagénes se puede estimar la concentración de material particulado en el aire.
+        Esto basándose en un modelo físico detallado en <a href="https://gaugelife.co/gauge-implications/25-vision/physical-fundamentals/" target="_blank"> la documentación del proyecto </a>,
+        en donde previamente se pudo encontrar una buena correlación entre la presencia de pm2.5 (de ahí el "2.5Vision") y la intensidad de luz
+        capatada por los sensores fotográficos de las cámaras.
+      </p>
 
-      <blockquote class="quote">
-        "Esta es una cita destacada que puede ser un lema o frase representativa de la empresa o alguna declaración importante."
-      </blockquote>
+      <p>
+        El detalle de la implementación se encuentra en la documentación del proyecto.
+      </p>
+
+
     </div>
 
     <div class="about-section">
-      <h3 class="section-title">Nuestros Valores</h3>
+      <h3 class="section-title">¿Qué datos obtenemos con tu ayuda?</h3>
       <ul class="values-list">
-        <li><span class="highlight">Innovación:</span> Descripción del valor relacionado con la innovación.</li>
-        <li><span class="highlight">Colaboración:</span> Explicación sobre cómo la colaboración es importante.</li>
-        <li><span class="highlight">Excelencia:</span> Detalle sobre el compromiso con la excelencia.</li>
-        <li><span class="highlight">Integridad:</span> Información sobre la ética y principios de la organización.</li>
+        <li><span class="highlight">Metadata:</span> La información que viene por defecto en las imágenes, como la fecha, la hora, la ubicación, parámetros de la cámara, etc.</li>
+        <li><span class="highlight">Contenido visual de la imagen:</span>En escencia un red convolucional detectará patrones visuales de la imágen que subas</li>
+        <li><span class="highlight">Usuario:</span> Esto solo se usa por si eres el usuario con mayor cantidad de imágenes subidas y poder ser contactado para recibir el premio</li>
       </ul>
+
+      <p>
+        <span class="highlight-box">Este proyecto es de código abierto, por lo que podrás validar que la información anterior es correcta.</span>
+      </p>
     </div>
 
     <div class="about-section">
-      <h3 class="section-title">Historia</h3>
-      <p>Un breve recorrido por la <em>historia de la organización</em>, desde sus inicios hasta la actualidad:</p>
+      <h3 class="section-title">Etapas del proyecto</h3>
+      <p>Un breve cronograma con el estado y progreso del proyecto</p>
 
       <div class="timeline">
         <div class="timeline-item">
-          <div class="timeline-date">2020</div>
+          <div class="timeline-date">Etapa 1</div>
           <div class="timeline-content">
-            <h4 class="timeline-title">Fundación</h4>
-            <p>Descripción de los inicios del proyecto o empresa.</p>
+            <h4 class="timeline-title">Recolección de datos</h4>
+            <p>Se reunen las fotografías con datos etiquetados para entrenar el modelo</p>
           </div>
         </div>
 
         <div class="timeline-item">
-          <div class="timeline-date">2021</div>
+          <div class="timeline-date">Etapa 2</div>
           <div class="timeline-content">
-            <h4 class="timeline-title">Crecimiento</h4>
-            <p>Detalles sobre la etapa de crecimiento y expansión.</p>
+            <h4 class="timeline-title">Entrenamiento del modelo</h4>
+            <p>Se entrena el modelo con los datos recopilados en la etapa 1 y agregando información de redes de monitoreo de calidad del aire,
+              en este caso PurpleAir y SIATA.
+            </p>
           </div>
         </div>
 
         <div class="timeline-item">
-          <div class="timeline-date">2022</div>
+          <div class="timeline-date">Etapa 3</div>
           <div class="timeline-content">
-            <h4 class="timeline-title">Consolidación</h4>
-            <p>Información sobre logros y consolidación en el mercado.</p>
+            <h4 class="timeline-title">Validación del modelo</h4>
+            <p>Aun no tengo muy claro la estrategia para validar el modelo jaja, ¿alguna sugerencia?</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">Etapa 4</div>
+          <div class="timeline-content">
+            <h4 class="timeline-title">Publicación del modelo</h4>
+            <p>Esta página se convierte en un punto de entrada para subir una imagen y que el resultado sea la estiamción de la concentración de material particulado en el aire</p>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="about-section">
-      <h3 class="section-title">Contacto</h3>
-      <p>Si deseas más información, puedes contactarnos a través de:</p>
 
-      <div class="contact-info">
-        <p><strong>Teléfono:</strong> +1 234 567 890</p>
-        <p><strong>Dirección:</strong> Calle Principal 123, Ciudad, País</p>
-      </div>
-    </div>
   </div>
 </div>
 
