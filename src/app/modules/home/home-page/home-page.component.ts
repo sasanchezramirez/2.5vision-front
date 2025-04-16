@@ -21,6 +21,7 @@ export class HomePageComponent implements OnInit {
   visibilityValue: number = 5;
   previewUrl: string | ArrayBuffer | null = null;
   uploadSuccess: boolean = false;
+  currentStep: number = 1;
 
   weatherOptions = [
     { value: 'tormenta', label: 'Tormenta' },
@@ -60,6 +61,7 @@ export class HomePageComponent implements OnInit {
       this.selectedFile = files[0];
       this.createImagePreview();
       console.log('Archivo seleccionado:', this.selectedFile);
+      this.currentStep = 2;
     }
   }
 
@@ -78,6 +80,7 @@ export class HomePageComponent implements OnInit {
   removeSelectedFile(): void {
     this.selectedFile = null;
     this.previewUrl = null;
+    this.currentStep = 1;
   }
 
   onDragOver(event: DragEvent): void {
@@ -93,12 +96,17 @@ export class HomePageComponent implements OnInit {
       this.selectedFile = event.dataTransfer.files[0];
       this.createImagePreview();
       console.log('Archivo arrastrado:', this.selectedFile);
+      this.currentStep = 2;
     }
   }
 
   onVisibilityChange(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
     this.visibilityValue = parseInt(inputElement.value, 10);
+
+    if (this.selectedFile) {
+      this.currentStep = 3;
+    }
   }
 
   getUsernameFromLocalStorage(): string | null {
@@ -124,6 +132,7 @@ export class HomePageComponent implements OnInit {
         console.log('Imagen subida con éxito:', response);
         this.isUploading = false;
         this.uploadSuccess = true;
+        this.currentStep = 4;
       },
       error: (error) => {
         console.error('Error al subir la imagen:', error);
@@ -134,11 +143,19 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  scrollToUploadSection(): void {
+    const element = document.getElementById('uploadSection');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
   resetForm(): void {
     this.selectedFile = null;
     this.previewUrl = null;
     this.selectedWeather = '';
     this.visibilityValue = 5;
     this.uploadSuccess = false;
+    this.currentStep = 1;
   }
 }

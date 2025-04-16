@@ -1,0 +1,31 @@
+    <div class="card-footer">
+      <button
+        class="submit-button"
+        [disabled]="!selectedFile || !selectedWeather"
+        [class.loading]="isUploading"
+        (click)="uploadImage()"
+      >
+        <span class="btn-content" *ngIf="!isUploading">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Enviar datos
+        </span>
+        <span class="btn-loading" *ngIf="isUploading">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="sr-only">Cargando...</span>
+        </span>
+      </button>
+
+      <div class="form-feedback" *ngIf="!selectedFile && currentStep === 1">
+        Por favor, selecciona una imagen para continuar
+      </div>
+
+      <div class="form-feedback" *ngIf="selectedFile && !selectedWeather && currentStep === 3">
+        Por favor, selecciona una opción de clima para continuar
+      </div>
+    </div>
