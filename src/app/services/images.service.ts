@@ -7,10 +7,10 @@ import { environment } from '../../enviroments/enviroment';
   providedIn: 'root'
 })
 export class ImagesService {
-  private baseUrl = environment.baseUrl;
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {
-    console.log('ImagesService inicializado con URL:', this.baseUrl);
+    console.log('ImagesService inicializado con URL:', this.apiUrl);
     console.log('¿Es ambiente de producción?', environment.production);
   }
 
@@ -32,7 +32,7 @@ export class ImagesService {
       formData.append('uploader_username', uploader_username);
     }
 
-    const url = `${this.baseUrl}/image/upload`;
+    const url = `${this.apiUrl}/image/upload`;
     console.log('Enviando imagen a:', url);
     return this.http.post(url, formData);
   }
