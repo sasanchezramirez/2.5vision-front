@@ -4,28 +4,28 @@
     <div>Dashboard</div>
   </div>
 
+  <!-- Mostrar opciones de login y registro solo cuando no está autenticado -->
+  <div *ngIf="!isAuthenticated" class="nav-item" [class.active]="activeTab === 'login'" (click)="setActiveTab('login')">
+    <div class="nav-icon icon-user"></div>
+    <div>Login</div>
+  </div>
+
+  <div *ngIf="!isAuthenticated" class="nav-item" [class.active]="activeTab === 'register'" (click)="setActiveTab('register')">
+    <div class="nav-icon icon-add-user"></div>
+    <div>Registro</div>
+  </div>
+
+  <!-- Mostrar opción de logout solo cuando está autenticado -->
+  <div *ngIf="isAuthenticated" class="nav-item" [class.active]="activeTab === 'logout'" (click)="setActiveTab('logout')">
+    <div class="nav-icon icon-logout"></div>
+    <div>Cerrar Sesión</div>
+  </div>
+
   <div class="nav-item" [class.active]="activeTab === 'about'" (click)="setActiveTab('about')">
     <div class="nav-icon icon-info"></div>
     <div>Acerca de</div>
   </div>
-  <!--
-  Elemento de navegación para el tab 'login'
-  <div class="nav-item" [class.active]="activeTab === 'login'" (click)="setActiveTab('login')">
-    <div class="nav-icon icon-user"></div>
-    <div>Login</div>
-  </div>
-  -->
-  <!--
-  Elemento de navegación para el tab 'register'
-  <div class="nav-item" [class.active]="activeTab === 'register'" (click)="setActiveTab('register')">
-    <div class="nav-icon icon-add-user"></div>
-    <div>Registro</div>
-  </div>
-  -->
-  <!--
-  Elemento de navegación para el tab 'about'
 
-  -->
   <!--
   Elemento de navegación para el tab 'alertas'
   <div class="nav-item" [class.active]="activeTab === 'alertas'" (click)="setActiveTab('alertas')">
@@ -33,6 +33,7 @@
     <div>Alertas</div>
   </div>
   -->
+
   <!--
   Elemento de navegación para el tab 'ajustes'
   <div class="nav-item" [class.active]="activeTab === 'ajustes'" (click)="setActiveTab('ajustes')">
