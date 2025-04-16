@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsersService } from '../../../services/users.service';
+import { NewUserInput } from '../../../models/auth/user-registration.model';
 
 @Component({
   selector: 'app-register',
@@ -14,13 +16,21 @@ export class RegisterComponent {
   confirmPassword: string = '';
   contactInfo: string = '';
   acceptTerms: boolean = false;
+  errorMessage: string = '';
+  successMessage: string = '';
+  isLoading: boolean = false;
 
-  constructor(private router: Router) {}
+  // Por defecto, usamos estos valores para el registro
+  private defaultProfileId: number = 1;
+  private defaultStatusId: number = 1;
+
+  constructor(
+    private router: Router,
+    private usersService: UsersService
+  ) {}
 
   isFormValid(): boolean {
     return (
-      this.fullname.trim() !== '' &&
-      this.email.trim() !== '' &&
       this.username.trim() !== '' &&
       this.password.trim() !== '' &&
       this.password.length >= 8 &&
@@ -31,20 +41,53 @@ export class RegisterComponent {
   }
 
   register(): void {
-    if (this.isFormValid()) {
-      // Aquí implementaríamos la lógica real de registro
-      console.log('Registro exitoso', {
-        fullname: this.fullname,
-        email: this.email,
-        username: this.username
-      });
+    // Reiniciar mensajes
+    this.errorMessage = '';
+    this.successMessage = '';
 
-      // Redirigir al login después del registro exitoso
-      this.router.navigate(['/auth/login']);
+    if (this.isFormValid()) {
+      this.isLoading = true;
+
+      const userData: NewUserInput = {
+        username: this.username,
+        password: this.password,
+        profile_id: this.defaultProfileId,
+        status_id: this.defaultStatusId,
+        contact_info: this.contactInfo
+      };
+
+      this.usersService.registerUser(userData).subscribe({
+        next: (response) => {
+          console.log('Usuario registrado con éxito', response);
+          this.successMessage = 'Usuario registrado exitosamente';
+          this.isLoading = false;
+
+          // Redirigir al login después del registro exitoso
+          setTimeout(() => {
+            this.router.navigate(['/auth/login']);
+          }, 2000);
+        },
+        error: (error) => {
+          console.error('Error en el registro', error);
+          this.errorMessage = error.message || 'Error al registrar el usuario';
+          this.isLoading = false;
+        }
+      });
     } else {
-      // Manejo de error cuando el formulario no está validado
-      // Aquí podríamos mostrar un mensaje de error
-      console.error('Por favor completa todos los campos correctamente');
+      // Mostrar un mensaje de error si el formulario no es válido
+      if (!this.username.trim()) {
+        this.errorMessage = 'Por favor ingresa un nombre de usuario';
+      } else if (!this.password.trim()) {
+        this.errorMessage = 'Por favor ingresa una contraseña';
+      } else if (this.password.length < 8) {
+        this.errorMessage = 'La contraseña debe tener al menos 8 caracteres';
+      } else if (this.password !== this.confirmPassword) {
+        this.errorMessage = 'Las contraseñas no coinciden';
+      } else if (!this.contactInfo.trim()) {
+        this.errorMessage = 'Por favor ingresa información de contacto';
+      } else if (!this.acceptTerms) {
+        this.errorMessage = 'Debes aceptar los términos para continuar';
+      }
     }
   }
 

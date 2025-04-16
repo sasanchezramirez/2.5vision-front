@@ -1,10 +1,4 @@
-<header>
-  <div class="logo-container">
-    <img src="assets/2_5_vision_logo.svg" alt="2.5Vision Logo" class="logo-image">
-  </div>
-  <div class="header-actions">
-  </div>
-</header>
+<app-header></app-header>
 
 <div class="main-content pb-6">
   <div class="insight-card">
@@ -27,6 +21,14 @@
       </div>
 
       <div class="register-form">
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
+        <div *ngIf="successMessage" class="success-message">
+          {{ successMessage }}
+        </div>
+
         <div class="form-group">
           <label for="username">Nombre de Usuario</label>
           <input type="text" id="username" placeholder="Elige un nombre de usuario" [(ngModel)]="username">
@@ -67,7 +69,10 @@
           </label>
         </div>
 
-        <button class="btn-register" [disabled]="!isFormValid()" (click)="register()">Crear Cuenta</button>
+        <button class="btn-register" [disabled]="!isFormValid() || isLoading" (click)="register()">
+          <span *ngIf="!isLoading">Crear Cuenta</span>
+          <span *ngIf="isLoading">Procesando...</span>
+        </button>
 
         <div class="login-link">
           ¿Ya tienes una cuenta? <a (click)="goToLogin()">Inicia Sesión</a>
