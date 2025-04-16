@@ -37,7 +37,23 @@
   </div>
 
   <div class="insight-card" id="uploadSection">
-    <div class="card-header">
+    <!-- Indicador de progreso en pasos -->
+    <div class="step-progress">
+      <div class="step-item" [class.active]="currentStep >= 1" [class.completed]="currentStep > 1">
+        <div class="step-number">1</div>
+        <div class="step-label">Seleccionar imagen</div>
+      </div>
+      <div class="step-item" [class.active]="currentStep >= 2" [class.completed]="currentStep > 2">
+        <div class="step-number">2</div>
+        <div class="step-label">Visibilidad</div>
+      </div>
+      <div class="step-item" [class.active]="currentStep >= 3" [class.completed]="currentStep > 3">
+        <div class="step-number">3</div>
+        <div class="step-label">Clima</div>
+      </div>
+    </div>
+
+    <div class="card-header" [class.active-step]="currentStep === 1">
       <div class="card-title">Paso 1: Carga tu imagen para análisis</div>
     </div>
     <div class="card-body">
@@ -73,31 +89,32 @@
       </div>
     </div>
 
-    <div class="card-header">
-      <div class="card-title">Paso 2: Da una estimación de visibilidad de 1 a 10</div>
+    <div class="card-header" [class.active-step]="currentStep === 2">
+      <div class="card-title">Paso 2: Da una estimación de visibilidad de 0 a 10</div>
     </div>
     <div class="card-body">
       <div class="visibility-slider">
         <div class="slider-value-display">
           <span class="current-value" [style.left]="(visibilityValue / 10 * 100) + '%'">{{visibilityValue}}</span>
         </div>
+        <label for="visibilitySlider" class="sr-only">Nivel de visibilidad</label>
         <input type="range" min="0" max="10" step="1" [value]="visibilityValue" class="slider" id="visibilitySlider"
-               (input)="onVisibilityChange($event)">
+               (input)="onVisibilityChange($event)" aria-valuemin="0" aria-valuemax="10" [attr.aria-valuenow]="visibilityValue">
         <div class="slider-values">
-          <div>0</div>
-          <div>5</div>
-          <div>10</div>
+          <div><strong>0</strong><span class="slider-label">No se ve nada</span></div>
+          <div><strong>5</strong><span class="slider-label">Visibilidad media</span></div>
+          <div><strong>10</strong><span class="slider-label">Visibilidad perfecta</span></div>
         </div>
         <div class="slider-hints">
-          <p><strong>0:</strong> No se ve nada</p>
+          <p><strong>0:</strong> Densidad de niebla extrema, no se puede ver nada</p>
           <p><strong>3:</strong> Se ve todo muy borroso, con bruma</p>
-          <p><strong>7:</strong> Buena visibilidad</p>
-          <p><strong>10:</strong> Se ve todo muy nítido</p>
+          <p><strong>7:</strong> Buena visibilidad, cielo nítido</p>
+          <p><strong>10:</strong> Visibilidad perfecta, todo se ve extremadamente nítido</p>
         </div>
       </div>
     </div>
 
-    <div class="card-header">
+    <div class="card-header" [class.active-step]="currentStep === 3">
       <div class="card-title">Paso 3: Ingresa una de las opciones que más se adecue al clima en este momento</div>
     </div>
     <div class="card-body">
@@ -112,14 +129,35 @@
     </div>
 
     <div class="card-footer">
-      <button class="submit-button" [disabled]="!selectedFile || !selectedWeather" (click)="uploadImage()">
-        <span *ngIf="!isUploading">Enviar datos</span>
-        <span *ngIf="isUploading" class="loading">
+      <button
+        class="submit-button"
+        [disabled]="!selectedFile || !selectedWeather"
+        [class.loading]="isUploading"
+        (click)="uploadImage()"
+      >
+        <span class="btn-content" *ngIf="!isUploading">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Enviar datos
+        </span>
+        <span class="btn-loading" *ngIf="isUploading">
           <span class="dot"></span>
           <span class="dot"></span>
           <span class="dot"></span>
+          <span class="sr-only">Cargando...</span>
         </span>
       </button>
+
+      <div class="form-feedback" *ngIf="!selectedFile && currentStep === 1">
+        Por favor, selecciona una imagen para continuar
+      </div>
+
+      <div class="form-feedback" *ngIf="selectedFile && !selectedWeather && currentStep === 3">
+        Por favor, selecciona una opción de clima para continuar
+      </div>
     </div>
   </div>
 
