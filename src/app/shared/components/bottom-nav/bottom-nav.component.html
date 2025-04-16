@@ -7,6 +7,10 @@
     <div class="nav-icon icon-user"></div>
     <div>Login</div>
   </div>
+  <div class="nav-item" [class.active]="activeTab === 'register'" (click)="setActiveTab('register')">
+    <div class="nav-icon icon-add-user"></div>
+    <div>Registro</div>
+  </div>
   <div class="nav-item" [class.active]="activeTab === 'about'" (click)="setActiveTab('about')">
     <div class="nav-icon icon-info"></div>
     <div>Acerca de</div>
@@ -17,10 +21,7 @@
   -->
   <!--
   Elemento de navegación para el tab 'register'
-  <div class="nav-item" [class.active]="activeTab === 'register'" (click)="setActiveTab('register')">
-    <div class="nav-icon icon-add-user"></div>
-    <div>Registro</div>
-  </div>
+
   -->
   <!--
   Elemento de navegación para el tab 'about'

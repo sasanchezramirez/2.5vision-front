@@ -1,5 +1,9 @@
 <header>
-  <h1 class="logo">2.5<span>Vision</span></h1>
+  <div class="logo-container">
+    <img src="assets/2_5_vision_logo.svg" alt="2.5Vision Logo" class="logo-image">
+  </div>
+  <div class="header-actions">
+  </div>
 </header>
 
 <div class="main-content pb-6">
@@ -44,29 +48,6 @@
     </div>
   </div>
 
-  <div class="insight-card">
-    <div class="card-header">
-      <div class="card-title">Beneficios de tener una cuenta</div>
-    </div>
-    <div class="card-body">
-      <div class="prize-announcement">
-        <div class="prize-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 21h8"></path>
-            <path d="M12 21v-4"></path>
-            <path d="M17 17H7"></path>
-            <path d="M17 13c0-3.87-3.13-7-7-7H7"></path>
-            <path d="M15 7c0 0 2-1 2-3"></path>
-          </svg>
-        </div>
-        <div class="prize-text">
-          <h3>¡GANAR UN PREMIO!</h3>
-          <p>Si eres quien más sube imágenes hasta el 1 de junio del 2025...</p>
-          <span class="prize-highlight">¡GANARÁS UNA BOTELLA DE VINO!</span> jajaja es poco pero honesto ;)
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <app-bottom-nav [activeTab]="'login'" (tabChange)="onTabChange($event)"></app-bottom-nav>

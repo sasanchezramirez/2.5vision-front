@@ -12,6 +12,7 @@ export class RegisterComponent {
   username: string = '';
   password: string = '';
   confirmPassword: string = '';
+  contactInfo: string = '';
   acceptTerms: boolean = false;
 
   constructor(private router: Router) {}
@@ -22,7 +23,9 @@ export class RegisterComponent {
       this.email.trim() !== '' &&
       this.username.trim() !== '' &&
       this.password.trim() !== '' &&
+      this.password.length >= 8 &&
       this.password === this.confirmPassword &&
+      this.contactInfo.trim() !== '' &&
       this.acceptTerms
     );
   }

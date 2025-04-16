@@ -1,8 +1,3 @@
-header {
-  padding: 1.2rem 1rem;
-  position: relative;
-  border-bottom: 1px solid var(--header-border);
-}
 
 .logo {
   font-weight: 300;
@@ -27,7 +22,7 @@ header {
 }
 
 .register-form {
-  margin-top: var(--spacing-base);
+  margin-top: var(--spacing-lg);
 }
 
 .form-group {
@@ -38,6 +33,14 @@ header {
     font-size: var(--font-size-sm);
     margin-bottom: var(--spacing-xs);
     color: rgba(255, 255, 255, 0.8);
+
+    .requirement,
+    .helper-text {
+      font-size: 0.85em;
+      font-weight: normal;
+      opacity: 0.7;
+      margin-left: var(--spacing-xs);
+    }
   }
 
   input {
@@ -58,6 +61,24 @@ header {
       border-color: var(--color-accent);
       box-shadow: 0 0 0 2px rgba(74, 122, 150, 0.2);
     }
+  }
+
+  .validation-message {
+    color: #ff6b6b;
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-xs);
+    animation: fadeIn 0.3s ease-in-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -84,6 +105,114 @@ header {
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+// Nuevo checkbox personalizado
+.custom-checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-base);
+  color: rgba(255, 255, 255, 0.8);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  label {
+    flex: 1;
+    cursor: pointer;
+    line-height: 1.6;
+    padding-left: var(--spacing-md);
+
+    a {
+      color: var(--color-accent);
+      text-decoration: none;
+      position: relative;
+      font-weight: 500;
+
+      &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        bottom: -1px;
+        left: 0;
+        background-color: var(--color-accent);
+        transform: scaleX(0);
+        transform-origin: bottom right;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover:after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+    }
+  }
+}
+
+.custom-checkbox {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  margin-top: 2px;
+
+  input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .checkbox-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius-xs);
+    transition: all 0.2s ease;
+
+    svg {
+      width: 18px;
+      height: 18px;
+      color: #32e232;
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+  }
+
+  input[type="checkbox"]:checked + .checkbox-indicator {
+    background: rgba(50, 226, 50, 0.1);
+    border-color: rgba(50, 226, 50, 0.5);
+
+    svg {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  input[type="checkbox"]:focus + .checkbox-indicator {
+    box-shadow: 0 0 0 3px rgba(50, 226, 50, 0.2);
   }
 }
 
@@ -127,5 +256,195 @@ header {
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+// Estilos nuevos similares al login/home
+.register-visual {
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(180deg, var(--color-accent) 0%, var(--color-tertiary) 100%);
+  border-radius: var(--border-radius-sm);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.data-dots {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(var(--dots-bg) 1px, transparent 1px);
+  background-size: 15px 15px;
+  z-index: 1;
+}
+
+.data-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,80 Q50,40 100,70 T200,60 T300,30 T400,50 T500,20 T600,50 T700,30 T800,70 T900,40 T1000,80' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' fill='none' /%3E%3C/svg%3E");
+  z-index: 1;
+  animation: wave 15s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(-5%) translateY(5px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+.register-icon {
+  position: relative;
+  z-index: 2;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  border-radius: 50%;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+// Estilos para el anuncio del premio
+.prize-announcement {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(74, 122, 150, 0.1) 0%, rgba(74, 122, 150, 0.3) 100%);
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-md);
+  border: 1px solid rgba(74, 122, 150, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(74, 122, 150, 0.6);
+  }
+  100% {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.prize-icon {
+  margin-right: var(--spacing-md);
+  color: var(--color-accent);
+  flex-shrink: 0;
+  position: relative;
+  animation: wobble 5s ease-in-out infinite;
+}
+
+@keyframes wobble {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
+}
+
+.prize-text {
+  flex: 1;
+
+  h3 {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    margin: 0 0 var(--spacing-xs);
+    color: #4ae54a;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    letter-spacing: 1px;
+  }
+
+  p {
+    font-size: var(--font-size-base);
+    margin: 0 0 var(--spacing-xs);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .prize-note {
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-xs);
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+  }
+
+  .prize-highlight {
+    display: inline-block;
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    margin-top: var(--spacing-xs);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    letter-spacing: 0.5px;
+    transform: scale(1);
+    animation: highlight 2s infinite;
+    background: #32e232;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+    border: 2px solid rgba(50, 226, 50, 0.5);
+    padding: 4px 8px;
+    border-radius: var(--border-radius-sm);
+  }
+}
+
+
+@keyframes highlight {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+// Arreglar el corte de la tarjeta de beneficios
+.pb-6 {
+  padding-bottom: 8rem !important;
+}
+header {
+  padding: 1.2rem 1rem;
+  position: relative;
+  border-bottom: 1px solid var(--header-border);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  width: 40px;
+  height: 40px;
+  margin-right: 0.5rem;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+  transition: var(--transition-fast);
+
+  &:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.3));
   }
 }

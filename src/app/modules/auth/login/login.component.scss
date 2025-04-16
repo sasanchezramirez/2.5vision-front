@@ -4,6 +4,24 @@ header {
   border-bottom: 1px solid var(--header-border);
 }
 
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  width: 40px;
+  height: 40px;
+  margin-right: 0.5rem;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+  transition: var(--transition-fast);
+
+  &:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.3));
+  }
+}
+
 .logo {
   font-weight: 300;
   letter-spacing: -0.5px;
