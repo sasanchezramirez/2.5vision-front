@@ -5,6 +5,7 @@ import { SharedModule } from '../../../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { ImagesService } from '../../../services/images.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-home-page',
@@ -32,7 +33,11 @@ export class HomePageComponent implements OnInit {
     { value: 'despejado', label: 'Totalmente despejado' }
   ];
 
-  constructor(private router: Router, private imagesService: ImagesService) {}
+  constructor(
+    private router: Router,
+    private imagesService: ImagesService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
   }
@@ -110,7 +115,7 @@ export class HomePageComponent implements OnInit {
   }
 
   getUsernameFromLocalStorage(): string | null {
-    return localStorage.getItem('username');
+    return this.authService.getUsername();
   }
 
   uploadImage(): void {
@@ -119,14 +124,12 @@ export class HomePageComponent implements OnInit {
     }
 
     this.isUploading = true;
-    const username = this.getUsernameFromLocalStorage();
 
     this.imagesService.uploadImage(
       this.selectedFile,
       this.visibilityValue,
       this.selectedWeather,
-      new Date(),
-      username || undefined
+      new Date()
     ).subscribe({
       next: (response) => {
         console.log('Imagen subida con éxito:', response);
