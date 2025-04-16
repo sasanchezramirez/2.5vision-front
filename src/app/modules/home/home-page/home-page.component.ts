@@ -134,6 +134,13 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  scrollToUploadSection(): void {
+    const element = document.getElementById('uploadSection');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
   resetForm(): void {
     this.selectedFile = null;
     this.previewUrl = null;

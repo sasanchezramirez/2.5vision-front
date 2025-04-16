@@ -1,25 +1,42 @@
 <header>
-  <h1 class="logo">2.5<span>Vision</span></h1>
+  <div class="logo-container">
+    <img src="assets/2_5_vision_logo.svg" alt="2.5Vision Logo" class="logo-image">
+  </div>
   <div class="header-actions">
 
   </div>
 </header>
 
 <div class="main-content pb-6">
-  <div class="welcome-section">
-    <h1>Gracias por contribuir a este proyecto</h1>
-    <br>
-    <p class="welcome-text">
-      Para entender de qué se trata este proyecto puedes ir a la sección de <a href="/about">Acerca de</a>.
-      La fomran en que puedes contribuir es subiendo una imagen donde se vea la panorámica de donde estés,
-      en donde se pueda ver una porción de cielo y algún otro elemento de referencia que se vea a lo lejos.
-      La información que se obtendrá de esta imagen está detallada en la documentacón del proyecto, en donde además
-      se disponibiliza el código fuente para que cualquiera pueda evidencia qué datos se están obteniendo con tu ayuda.
-    </p>
+  <!-- Sección Hero con fondo y CTA -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Buenas,</h1>
+      <p class="hero-text">
+        Actualmente este proyecto busca consolidar datos suficientes para entrenar el modelo de una mejor forma.
+        Esto es solo la etapa incial.
+      </p>
+      <p class="hero-text">
+        Si creas una cuenta (no te pediré datos sensibles) podrás ganar una botella de vino en 2 meses ;)
+      </p>
+
+
+      <div class="hero-buttons">
+        <button class="hero-cta" (click)="scrollToUploadSection()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+          Subir una imagen ahora
+        </button>
+        <a href="/about" class="hero-link">Conoce más sobre el proyecto</a>
+      </div>
+    </div>
+    <div class="hero-image-overlay"></div>
   </div>
 
-
-  <div class="insight-card">
+  <div class="insight-card" id="uploadSection">
     <div class="card-header">
       <div class="card-title">Paso 1: Carga tu imagen para análisis</div>
     </div>
