@@ -26,6 +26,10 @@ export class LoginComponent {
     this.router.navigate(['/auth/register']);
   }
 
+  goToResetPassword(): void {
+    this.router.navigate(['/auth/reset-password']);
+  }
+
   onTabChange(tab: string): void {
     if (tab !== 'login') {
       if (tab === 'dashboard') {
