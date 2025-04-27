@@ -44,22 +44,27 @@ export class InsightsPageComponent implements OnInit, AfterViewInit {
   initChart(): void {
     const ctx = this.chartCanvas.nativeElement.getContext('2d');
 
+    // Definir colores para el tema oscuro
+    const barColors = [
+      'rgba(75, 192, 192, 0.8)',  // Verde azulado
+      'rgba(54, 162, 235, 0.8)',  // Azul
+      'rgba(255, 206, 86, 0.8)'   // Amarillo
+    ];
+
+    const borderColors = [
+      'rgba(75, 192, 192, 1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)'
+    ];
+
     this.chart = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: this.topContributors.map(user => user.username),
         datasets: [{
           data: this.topContributors.map(user => user.contributions),
-          backgroundColor: [
-            'rgba(75, 192, 192, 0.8)',
-            'rgba(54, 162, 235, 0.8)',
-            'rgba(255, 206, 86, 0.8)'
-          ],
-          borderColor: [
-            'rgba(75, 192, 192, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)'
-          ],
+          backgroundColor: barColors,
+          borderColor: borderColors,
           borderWidth: 1
         }]
       },
@@ -67,7 +72,21 @@ export class InsightsPageComponent implements OnInit, AfterViewInit {
         responsive: true,
         scales: {
           y: {
-            beginAtZero: true
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(255, 255, 255, 0.1)'
+            },
+            ticks: {
+              color: '#cccccc'
+            }
+          },
+          x: {
+            grid: {
+              color: 'rgba(255, 255, 255, 0.1)'
+            },
+            ticks: {
+              color: '#cccccc'
+            }
           }
         },
         plugins: {
@@ -76,7 +95,18 @@ export class InsightsPageComponent implements OnInit, AfterViewInit {
           },
           title: {
             display: true,
-            text: 'Top Contribuidores'
+            text: 'Top Contribuidores',
+            color: '#ffffff',
+            font: {
+              size: 16
+            }
+          },
+          tooltip: {
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            titleColor: '#ffffff',
+            bodyColor: '#ffffff',
+            borderColor: 'rgba(255, 255, 255, 0.2)',
+            borderWidth: 1
           }
         }
       }

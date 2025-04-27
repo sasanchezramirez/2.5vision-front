@@ -35,6 +35,14 @@
   --header-border: rgba(255, 255, 255, 0.05);
   --btn-bg: rgba(255, 255, 255, 0.05);
   --dots-bg: rgba(255, 255, 255, 0.15);
+
+  /* Variables para insights */
+  --insights-bg: #1a1a1a;
+  --insights-card-bg: #2a2a2a;
+  --insights-card-header: #333333;
+  --insights-border: #3a3a3a;
+  --insights-text-primary: #ffffff;
+  --insights-text-secondary: #cccccc;
 }
 
 * {
@@ -150,4 +158,9 @@ body {
   font-size: var(--font-size-base);
   font-weight: 500;
   color: rgba(255, 255, 255, 0.7);
+}
+
+/* Asegurando que Chart.js use colores apropiados para tema oscuro */
+canvas {
+  filter: brightness(1.1) !important;
 }
