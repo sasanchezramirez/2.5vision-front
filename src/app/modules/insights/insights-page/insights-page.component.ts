@@ -44,48 +44,57 @@ export class InsightsPageComponent implements OnInit, AfterViewInit {
   initChart(): void {
     const ctx = this.chartCanvas.nativeElement.getContext('2d');
 
-    // Definir colores para el tema oscuro
-    const barColors = [
-      'rgba(75, 192, 192, 0.8)',  // Verde azulado
-      'rgba(54, 162, 235, 0.8)',  // Azul
-      'rgba(255, 206, 86, 0.8)'   // Amarillo
-    ];
-
-    const borderColors = [
-      'rgba(75, 192, 192, 1)',
-      'rgba(54, 162, 235, 1)',
-      'rgba(255, 206, 86, 1)'
-    ];
-
     this.chart = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: this.topContributors.map(user => user.username),
         datasets: [{
           data: this.topContributors.map(user => user.contributions),
-          backgroundColor: barColors,
-          borderColor: borderColors,
-          borderWidth: 1
+          backgroundColor: [
+            '#4169E1',  // Azul real
+            '#6495ED',  // Azul acero
+            '#87CEEB'   // Azul cielo
+          ],
+          borderWidth: 0,
+          borderRadius: 8,
+          maxBarThickness: 50
         }]
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         scales: {
           y: {
             beginAtZero: true,
             grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
+              color: 'rgba(255, 255, 255, 0.05)',
+              display: true
             },
             ticks: {
-              color: '#cccccc'
+              color: '#808080',
+              font: {
+                size: 12
+              },
+              padding: 10
+            },
+            border: {
+              display: false
             }
           },
           x: {
             grid: {
-              color: 'rgba(255, 255, 255, 0.1)'
+              display: false
             },
             ticks: {
-              color: '#cccccc'
+              color: '#ffffff',
+              font: {
+                size: 12,
+                weight: 'bold'
+              },
+              padding: 10
+            },
+            border: {
+              display: false
             }
           }
         },
@@ -98,15 +107,23 @@ export class InsightsPageComponent implements OnInit, AfterViewInit {
             text: 'Top Contribuidores',
             color: '#ffffff',
             font: {
-              size: 16
+              size: 16,
+              weight: 'bold'
+            },
+            padding: {
+              bottom: 30
             }
           },
           tooltip: {
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
             titleColor: '#ffffff',
             bodyColor: '#ffffff',
-            borderColor: 'rgba(255, 255, 255, 0.2)',
-            borderWidth: 1
+            bodyFont: {
+              size: 14
+            },
+            padding: 12,
+            cornerRadius: 8,
+            displayColors: false
           }
         }
       }

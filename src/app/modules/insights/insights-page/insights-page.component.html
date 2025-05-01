@@ -1,5 +1,5 @@
 <div class="insights-container">
-  <h1 class="title">Insights de Contribuciones</h1>
+  <h1 class="title">Insights</h1>
 
   <div class="card contribution-card">
     <div class="card-header">
@@ -7,33 +7,19 @@
     </div>
     <div class="card-body">
       <div class="contribution-total">
-        <span class="contribution-number">{{totalContributions}}</span>
-        <span class="contribution-label">Contribuciones Totales</span>
+        <div class="contribution-number">{{ totalContributions }}</div>
+        <div class="contribution-label">contribuciones</div>
       </div>
     </div>
   </div>
 
   <div class="card chart-card">
     <div class="card-header">
-      <h2>Top 3 Contribuidores</h2>
+      <h2>Top Contribuidores</h2>
     </div>
     <div class="card-body">
       <div class="chart-container">
-        <div style="display: block; height: 100%;">
-          <canvas
-            #chartCanvas
-            width="400"
-            height="200">
-          </canvas>
-        </div>
-      </div>
-
-      <div class="contributors-list">
-        <div class="contributor-item" *ngFor="let contributor of topContributors; let i = index">
-          <div class="rank">{{i + 1}}</div>
-          <div class="username">{{contributor.username}}</div>
-          <div class="contributions">{{contributor.contributions}} contribuciones</div>
-        </div>
+        <canvas #chartCanvas></canvas>
       </div>
     </div>
   </div>
