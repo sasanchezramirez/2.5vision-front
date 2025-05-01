@@ -5,13 +5,12 @@ import { InsightsPageComponent } from './insights-page/insights-page.component';
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    InsightsPageComponent
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     InsightsRoutingModule,
-    SharedModule
+    SharedModule,
+    InsightsPageComponent
   ]
 })
 export class InsightsModule { }

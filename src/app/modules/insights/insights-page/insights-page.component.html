@@ -1,26 +1,32 @@
-<div class="insights-container">
-  <h1 class="title">Insights</h1>
+<app-header></app-header>
 
-  <div class="card contribution-card">
-    <div class="card-header">
-      <h2>Tus Contribuciones</h2>
-    </div>
-    <div class="card-body">
-      <div class="contribution-total">
-        <div class="contribution-number">{{ totalContributions }}</div>
-        <div class="contribution-label">contribuciones</div>
+<div class="main-content pb-6">
+  <div class="insights-container">
+    <h1 class="title">Insights</h1>
+
+    <div class="card contribution-card">
+      <div class="card-header">
+        <h2>Tus Contribuciones</h2>
+      </div>
+      <div class="card-body">
+        <div class="contribution-total">
+          <div class="contribution-number">{{ totalContributions }}</div>
+          <div class="contribution-label">contribuciones</div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="card chart-card">
-    <div class="card-header">
-      <h2>Top Contribuidores</h2>
-    </div>
-    <div class="card-body">
-      <div class="chart-container">
-        <canvas #chartCanvas></canvas>
+    <div class="card chart-card">
+      <div class="card-header">
+        <h2>Top Contribuidores</h2>
+      </div>
+      <div class="card-body">
+        <div class="chart-container">
+          <canvas #chartCanvas></canvas>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<app-bottom-nav [activeTab]="'insights'" (tabChange)="onTabChange($event)"></app-bottom-nav>

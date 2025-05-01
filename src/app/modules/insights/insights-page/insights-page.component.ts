@@ -1,5 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
+import { Router } from '@angular/router';
+import { SharedModule } from '../../../shared/shared.module';
+import { CommonModule } from '@angular/common';
 
 interface UserContribution {
   username: string;
@@ -9,7 +12,9 @@ interface UserContribution {
 @Component({
   selector: 'app-insights-page',
   templateUrl: './insights-page.component.html',
-  styleUrls: ['./insights-page.component.scss']
+  styleUrls: ['./insights-page.component.scss'],
+  standalone: true,
+  imports: [SharedModule, CommonModule]
 })
 export class InsightsPageComponent implements OnInit, AfterViewInit {
   @ViewChild('chartCanvas') chartCanvas!: ElementRef;
@@ -18,7 +23,7 @@ export class InsightsPageComponent implements OnInit, AfterViewInit {
   totalContributions: number = 0;
   topContributors: UserContribution[] = [];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     // Cargar datos de ejemplo
@@ -39,6 +44,10 @@ export class InsightsPageComponent implements OnInit, AfterViewInit {
       { username: 'Usuario2', contributions: 65 },
       { username: 'Usuario3', contributions: 52 }
     ];
+  }
+
+  onTabChange(tab: string): void {
+    this.router.navigate([`/${tab}`]);
   }
 
   initChart(): void {

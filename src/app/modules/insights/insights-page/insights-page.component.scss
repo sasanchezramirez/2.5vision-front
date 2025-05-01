@@ -1,9 +1,13 @@
+.main-content {
+  padding: var(--spacing-base);
+  padding-bottom: 80px;
+}
+
 .insights-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 1.5rem;
-  background-color: #000000;
-  min-height: 100vh;
+  min-height: calc(100vh - 160px); // Ajustado para considerar header y footer
 }
 
 .title {
