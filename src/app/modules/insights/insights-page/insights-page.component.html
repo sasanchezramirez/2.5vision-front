@@ -10,8 +10,18 @@
       </div>
       <div class="card-body">
         <div class="contribution-total">
-          <div class="contribution-number">{{ totalContributions }}</div>
-          <div class="contribution-label">contribuciones</div>
+          <div *ngIf="isLoading" class="loading-spinner">
+            <div class="spinner"></div>
+            <span>Cargando...</span>
+          </div>
+          <div *ngIf="!isLoading && !errorMessage">
+            <div class="contribution-number">{{ totalContributions }}</div>
+            <div class="contribution-label">contribuciones</div>
+          </div>
+          <div *ngIf="!isLoading && errorMessage" class="error-message">
+            <div class="error-icon">!</div>
+            <span>{{ errorMessage }}</span>
+          </div>
         </div>
       </div>
     </div>

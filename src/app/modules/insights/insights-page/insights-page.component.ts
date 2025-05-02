@@ -3,6 +3,7 @@ import { Chart } from 'chart.js/auto';
 import { Router } from '@angular/router';
 import { SharedModule } from '../../../shared/shared.module';
 import { CommonModule } from '@angular/common';
+import { MasterdataService } from '../../../services/masterdata.service';
 
 interface UserContribution {
   username: string;
@@ -22,11 +23,19 @@ export class InsightsPageComponent implements OnInit, AfterViewInit {
   chart: Chart | undefined;
   totalContributions: number = 0;
   topContributors: UserContribution[] = [];
+  isLoading: boolean = true;
+  errorMessage: string | null = null;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private masterdataService: MasterdataService
+  ) { }
 
   ngOnInit(): void {
-    // Cargar datos de ejemplo
+    // Cargar datos de contribuciones del usuario
+    this.loadUserContributions();
+
+    // Cargar datos de top contribuidores
     this.loadContributionData();
   }
 
@@ -35,10 +44,26 @@ export class InsightsPageComponent implements OnInit, AfterViewInit {
     this.initChart();
   }
 
+  loadUserContributions(): void {
+    this.isLoading = true;
+    this.errorMessage = null;
+
+    this.masterdataService.getTotalContributionsByUser().subscribe({
+      next: (total) => {
+        this.totalContributions = total;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Error al cargar contribuciones:', error);
+        this.errorMessage = 'No se pudieron cargar las contribuciones';
+        this.isLoading = false;
+        this.totalContributions = 0; // Valor por defecto
+      }
+    });
+  }
+
   loadContributionData(): void {
     // Datos de ejemplo que normalmente vendrían de un servicio
-    this.totalContributions = 42;
-
     this.topContributors = [
       { username: 'Usuario1', contributions: 78 },
       { username: 'Usuario2', contributions: 65 },
