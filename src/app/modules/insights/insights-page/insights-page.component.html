@@ -1,80 +1,68 @@
 <app-header></app-header>
 
-<div class="main-content pb-6">
+<div class="main-content">
   <div class="insights-container">
-    <h1 class="title">Insights</h1>
+    <h1 class="title">Panel de <span>Insights</span></h1>
 
-    <div class="card contribution-card">
-      <div class="card-header">
-        <h2>Tus Contribuciones</h2>
+    <div class="insights-grid">
+      <!-- Tarjeta de contribuciones personales -->
+      <div class="card personal-card">
+        <div class="card-content">
+          <div class="card-header">
+            <div class="card-title">Tus Contribuciones</div>
+          </div>
+
+          <div class="contribution-display">
+            <div *ngIf="isLoading" class="loading-spinner">
+              <div class="spinner"></div>
+            </div>
+
+            <div *ngIf="!isLoading && !errorMessage" class="stat-display">
+              <div class="contribution-number">{{ displayedContributions }}</div>
+              <div class="contribution-label">imágenes subidas</div>
+            </div>
+
+            <div *ngIf="!isLoading && errorMessage" class="error-message">
+              <div class="error-icon">!</div>
+              <span>{{ errorMessage }}</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="card-body">
-        <div class="contribution-total">
-          <div *ngIf="isLoading" class="loading-spinner">
+
+      <!-- Tarjeta de ranking de contribuidores -->
+      <div class="card leaderboard-card">
+        <div class="card-content">
+          <div class="card-header">
+            <div class="card-title">Top Contribuidores</div>
+          </div>
+
+          <div *ngIf="contributorsLoading" class="loading-spinner centered">
             <div class="spinner"></div>
-            <span>Cargando...</span>
           </div>
-          <div *ngIf="!isLoading && !errorMessage">
-            <div class="contribution-number">{{ totalContributions }}</div>
-            <div class="contribution-label">contribuciones</div>
-          </div>
-          <div *ngIf="!isLoading && errorMessage" class="error-message">
+
+          <div *ngIf="!contributorsLoading && contributorsError" class="error-message">
             <div class="error-icon">!</div>
-            <span>{{ errorMessage }}</span>
+            <span>{{ contributorsError }}</span>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="card podium-card">
-      <div class="card-header">
-        <h2>Top Contribuidores</h2>
-      </div>
-      <div class="card-body">
-        <div *ngIf="contributorsLoading" class="loading-spinner">
-          <div class="spinner"></div>
-          <span>Cargando ranking...</span>
-        </div>
-
-        <div *ngIf="!contributorsLoading && contributorsError" class="error-message">
-          <div class="error-icon">!</div>
-          <span>{{ contributorsError }}</span>
-        </div>
-
-        <div *ngIf="!contributorsLoading && !contributorsError && topContributors.length > 0" class="podium-container">
-          <!-- Segundo lugar (izquierda) -->
-          <div class="podium-position second" *ngIf="topContributors.length > 1">
-            <div class="contributor-avatar" [style.background-color]="getPositionColor(1)">
-              <span>2</span>
+          <div *ngIf="!contributorsLoading && !contributorsError && topContributors.length > 0" class="leaderboard-list">
+            <!-- Lista de contribuidores -->
+            <div class="contributor-item" *ngFor="let contributor of topContributors; let i = index">
+              <div class="position-badge-wrapper">
+                <div class="position-badge-gradient" [style.background]="i === 0 ? 'linear-gradient(90deg, #DA4453, #8B2A76)' : (i === 1 ? 'linear-gradient(90deg, #DA4453, #8B2A76)' : 'linear-gradient(90deg, #DA4453, #8B2A76)')"></div>
+                <div class="position-badge">{{ i + 1 }}</div>
+              </div>
+              <div class="contributor-details">
+                <div class="contributor-name">{{ maskUsername(contributor.username) }}</div>
+                <div class="contributor-score">{{ contributor.total_images_uploaded }} Imágenes</div>
+              </div>
             </div>
-            <div class="contributor-name">{{ maskUsername(topContributors[1].username) }}</div>
-            <div class="contributor-score">{{ topContributors[1].total_images_uploaded }} Imágenes</div>
-            <div class="podium-block second-block">2</div>
           </div>
 
-          <!-- Primer lugar (centro) -->
-          <div class="podium-position first" *ngIf="topContributors.length > 0">
-            <div class="contributor-avatar" [style.background-color]="getPositionColor(0)">
-              <span>1</span>
-            </div>
-            <div class="contributor-name">{{ maskUsername(topContributors[0].username) }}</div>
-            <div class="contributor-score">{{ topContributors[0].total_images_uploaded }} Imágenes</div>
-            <div class="podium-block first-block">1</div>
+          <div *ngIf="!contributorsLoading && !contributorsError && topContributors.length === 0" class="no-data-message">
+            <span>No hay suficientes contribuidores aún</span>
           </div>
-
-          <!-- Tercer lugar (derecha) -->
-          <div class="podium-position third" *ngIf="topContributors.length > 2">
-            <div class="contributor-avatar" [style.background-color]="getPositionColor(2)">
-              <span>3</span>
-            </div>
-            <div class="contributor-name">{{ maskUsername(topContributors[2].username) }}</div>
-            <div class="contributor-score">{{ topContributors[2].total_images_uploaded }} Imágenes</div>
-            <div class="podium-block third-block">3</div>
-          </div>
-        </div>
-
-        <div *ngIf="!contributorsLoading && !contributorsError && topContributors.length === 0" class="no-data-message">
-          <span>No hay suficientes contribuidores para mostrar un ranking</span>
         </div>
       </div>
     </div>

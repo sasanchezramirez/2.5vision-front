@@ -13,11 +13,13 @@ import { MasterdataService, Contributor } from '../../../services/masterdata.ser
 })
 export class InsightsPageComponent implements OnInit {
   totalContributions: number = 0;
+  displayedContributions: number = 0;
   topContributors: Contributor[] = [];
   isLoading: boolean = true;
   contributorsLoading: boolean = true;
   errorMessage: string | null = null;
   contributorsError: string | null = null;
+  animationStarted: boolean = false;
 
   constructor(
     private router: Router,
@@ -40,6 +42,10 @@ export class InsightsPageComponent implements OnInit {
       next: (total) => {
         this.totalContributions = total;
         this.isLoading = false;
+        // Iniciar la animación después de que se carguen los datos
+        setTimeout(() => {
+          this.startCountAnimation();
+        }, 300);
       },
       error: (error) => {
         console.error('Error al cargar contribuciones:', error);
@@ -72,7 +78,15 @@ export class InsightsPageComponent implements OnInit {
 
   // Método para enmascarar nombres de usuario
   maskUsername(username: string): string {
-    return this.masterdataService.maskUsername(username);
+    if (!username || username.length <= 2) {
+      return username;
+    }
+
+    const firstChar = username.charAt(0);
+    const lastChar = username.charAt(username.length - 1);
+
+    // Siempre usar exactamente 4 asteriscos
+    return `${firstChar}****${lastChar}`;
   }
 
   onTabChange(tab: string): void {
@@ -89,5 +103,26 @@ export class InsightsPageComponent implements OnInit {
   getPodiumClass(index: number): string {
     const positions = ['first', 'second', 'third'];
     return index < positions.length ? positions[index] : '';
+  }
+
+  // Crear animación para el contador
+  startCountAnimation(): void {
+    if (this.animationStarted) return;
+    this.animationStarted = true;
+
+    this.displayedContributions = 0;
+    const duration = 1500; // ms
+    const steps = 60;
+    const increment = this.totalContributions / steps;
+    const interval = duration / steps;
+
+    const timer = setInterval(() => {
+      this.displayedContributions = Math.ceil(this.displayedContributions + increment);
+
+      if (this.displayedContributions >= this.totalContributions) {
+        this.displayedContributions = this.totalContributions;
+        clearInterval(timer);
+      }
+    }, interval);
   }
 }
