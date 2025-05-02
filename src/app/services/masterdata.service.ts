@@ -11,6 +11,12 @@ interface ApiResponse<T> {
   status: boolean;
 }
 
+export interface Contributor {
+  id: number;
+  username: string;
+  total_images_uploaded: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -32,5 +38,34 @@ export class MasterdataService {
     ).pipe(
       map(response => response.data)
     );
+  }
+
+  /**
+   * Obtiene el top de contribuidores de la plataforma
+   * @returns Observable con la lista de los 3 contribuidores principales
+   */
+  getTopContributors(): Observable<Contributor[]> {
+    return this.http.get<ApiResponse<Contributor[]>>(
+      `${this.apiUrl}/masterdata/top-contributors`
+    ).pipe(
+      map(response => response.data)
+    );
+  }
+
+  /**
+   * Enmascara un nombre de usuario mostrando solo primera y última letra
+   * @param username Nombre de usuario completo
+   * @returns Nombre de usuario enmascarado
+   */
+  maskUsername(username: string): string {
+    if (!username || username.length <= 2) {
+      return username;
+    }
+
+    const firstChar = username.charAt(0);
+    const lastChar = username.charAt(username.length - 1);
+    const maskedPart = '*'.repeat(username.length - 2);
+
+    return `${firstChar}${maskedPart}${lastChar}`;
   }
 }
