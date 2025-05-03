@@ -1,0 +1,337 @@
+// Variables
+$gradient-primary: linear-gradient(135deg, #6C5CE7, #a29bfe);
+$gradient-secondary: linear-gradient(90deg, #DA4453, #8B2A76);
+$bg-dark: #000000;
+$card-bg: #1C1C1E;
+$card-border: rgba(255, 255, 255, 0.08);
+$text-primary: #ffffff;
+$text-secondary: rgba(255, 255, 255, 0.7);
+$text-muted: rgba(255, 255, 255, 0.5);
+
+$gradient-title: linear-gradient(90deg, #DA4453, #8B2A76, #6C5CE7, #a29bfe);
+
+$gold: #FFD700;
+$silver: #C0C0C0;
+$bronze: #CD7F32;
+
+// Estilos principales
+.main-content {
+  background-color: $bg-dark;
+  min-height: 100vh;
+  padding: 1.5rem 1rem 5rem;
+}
+
+.insights-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 0;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+  background: $gradient-title;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  letter-spacing: -0.5px;
+
+  span {
+    font-weight: 700;
+  }
+}
+
+// Grid layout
+.insights-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Card styles
+.card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: $card-bg;
+  border: 1px solid $card-border;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  height: 100%;
+  min-height: 400px;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+.card-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $text-primary;
+}
+
+// Contribution card styles
+.personal-card {
+  .card-header {
+    background: $gradient-primary;
+  }
+}
+
+.contribution-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 0 1rem 2rem;
+}
+
+.stat-display {
+  text-align: center;
+  position: relative;
+  padding: 1rem;
+  width: 100%;
+}
+
+.contribution-number {
+  font-size: 5rem;
+  font-weight: 700;
+  background: $gradient-primary;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  animation: countUp 1.5s ease-out;
+}
+
+@keyframes countUp {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.contribution-label {
+  font-size: 1.2rem;
+  color: $text-secondary;
+  text-transform: none;
+  margin-bottom: 1rem;
+}
+
+// Leaderboard card styles
+.leaderboard-card {
+  .card-header {
+    background: $gradient-secondary;
+  }
+}
+
+// Nuevo estilo para la lista de contribuidores
+.leaderboard-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1rem 1.5rem;
+  height: calc(100% - 80px);
+}
+
+.contributor-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+// Nuevo estilo para los badges con borde degradado
+.position-badge-wrapper {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin-right: 1.5rem;
+  flex-shrink: 0;
+}
+
+.position-badge-gradient {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  opacity: 0.8;
+  filter: blur(3px);
+}
+
+.position-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: $text-primary;
+  border-radius: 50%;
+  background-color: $card-bg;
+  z-index: 1;
+  transform: scale(0.9);
+  border: 2px solid transparent;
+  box-sizing: border-box;
+}
+
+.contributor-details {
+  flex: 1;
+}
+
+.contributor-name {
+  font-weight: 600;
+  color: $text-primary;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.contributor-score {
+  color: $text-secondary;
+  font-size: 0.95rem;
+}
+
+// Loading spinner and error messages
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  &.centered {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(108, 92, 231, 0.1);
+  border-left-color: #6C5CE7;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #ff6b6b;
+  text-align: center;
+  padding: 1rem;
+}
+
+.error-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 107, 107, 0.2);
+  border: 2px solid #ff6b6b;
+  color: #ff6b6b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.no-data-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: $text-muted;
+  text-align: center;
+  padding: 1rem;
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .card {
+    min-height: 350px;
+  }
+
+  .contribution-number {
+    font-size: 3.5rem;
+  }
+
+  .position-badge-wrapper {
+    width: 40px;
+    height: 40px;
+    margin-right: 1rem;
+  }
+
+  .position-badge {
+    font-size: 1.25rem;
+  }
+
+  .contributor-name {
+    font-size: 0.95rem;
+  }
+
+  .contributor-score {
+    font-size: 0.85rem;
+  }
+}

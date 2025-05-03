@@ -84,3 +84,17 @@
     opacity: 1;
   }
 }
+
+// Mixin para centrar contenedores de formulario con ancho máximo
+@mixin centered-container($max-width: 480px) {
+  max-width: $max-width;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
+}
+
+// Mixin para transición suave
+@mixin smooth-transition($properties: all, $duration: 0.3s, $timing: ease) {
+  transition: $properties $duration $timing;
+}

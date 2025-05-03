@@ -1,0 +1,103 @@
+// Estilos compartidos para tarjetas con borde degradado
+// Estos estilos se aplicarán a todas las tarjetas del sistema (auth, home, etc.)
+
+// Variable para el degradado principal
+$gradient-border: linear-gradient(90deg, #DA4453, #8B2A76, #6C5CE7, #a29bfe);
+
+// Estilos para tarjetas con gradiente
+.gradient-card {
+  position: relative;
+  background-color: #1C1C1E;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+  }
+}
+
+// Encabezado de tarjeta
+.gradient-card-header {
+  position: relative;
+  padding: 1.5rem;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, #DA4453, #8B2A76);
+  }
+}
+
+// Título de tarjeta
+.gradient-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #E14D5A;
+  margin: 0;
+  padding: 0;
+}
+
+// Cuerpo de tarjeta
+.gradient-card-body {
+  padding: 1.5rem;
+}
+
+// Estilo específico para tarjetas activas o destacadas
+.gradient-card.active {
+  &::before {
+    opacity: 0.9;
+    box-shadow: 0 0 20px rgba(108, 92, 231, 0.2);
+  }
+}
+
+// Estilo para botones principales
+.gradient-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #DA4453, #8B2A76);
+  border: none;
+  border-radius: 50px;
+  padding: 0.8rem 1.6rem;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 280px;
+
+  &:hover, &:focus {
+    background: linear-gradient(135deg, #C63C4A, #7A2567);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    background: linear-gradient(135deg, #888, #666);
+    box-shadow: none;
+    transform: none;
+  }
+
+  svg {
+    margin-right: 0.8rem;
+  }
+}

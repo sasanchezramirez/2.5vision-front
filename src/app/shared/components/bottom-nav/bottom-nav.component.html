@@ -15,6 +15,12 @@
     <div>Registro</div>
   </div>
 
+  <!-- Mostrar opción de insights solo cuando está autenticado -->
+  <div *ngIf="isAuthenticated" class="nav-item" [class.active]="activeTab === 'insights'" (click)="setActiveTab('insights')">
+    <div class="nav-icon icon-insights"></div>
+    <div>Insights</div>
+  </div>
+
   <!-- Mostrar opción de logout solo cuando está autenticado -->
   <div *ngIf="isAuthenticated" class="nav-item" [class.active]="activeTab === 'logout'" (click)="setActiveTab('logout')">
     <div class="nav-icon icon-logout"></div>
@@ -28,10 +34,7 @@
 
   <!--
   Elemento de navegación para el tab 'alertas'
-  <div class="nav-item" [class.active]="activeTab === 'alertas'" (click)="setActiveTab('alertas')">
-    <div class="nav-icon icon-alert"></div>
-    <div>Alertas</div>
-  </div>
+
   -->
 
   <!--

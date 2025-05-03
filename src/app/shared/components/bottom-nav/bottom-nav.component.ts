@@ -43,6 +43,9 @@ export class BottomNavComponent implements OnInit {
       case 'logout':
         this.logout();
         break;
+      case 'insights':
+        this.router.navigate(['/insights']);
+        break;
       case 'alertas':
         // Ruta para alertas cuando exista
         break;

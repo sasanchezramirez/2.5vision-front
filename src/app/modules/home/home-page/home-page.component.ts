@@ -160,5 +160,9 @@ export class HomePageComponent implements OnInit {
     this.visibilityValue = 5;
     this.uploadSuccess = false;
     this.currentStep = 1;
+
+    setTimeout(() => {
+      this.scrollToUploadSection();
+    }, 100);
   }
 }

@@ -1,14 +1,14 @@
 // Variables globales para la aplicación
 
 // Colores primarios
-$color-primary: #5d8ba7;
-$color-primary-light: #6f9db9;
-$color-primary-dark: #4a7a96;
+$color-primary: #DA4453;
+$color-primary-light: lighten($color-primary, 10%);
+$color-primary-dark: #8B2A76;
 
 // Colores secundarios
-$color-secondary: #5c284f;
-$color-secondary-light: #6d3960;
-$color-secondary-dark: #4b173e;
+$color-secondary: #6C5CE7;
+$color-secondary-light: #a29bfe;
+$color-secondary-dark: darken($color-secondary, 10%);
 
 // Colores de estado
 $color-success: #4ADE80;
@@ -31,8 +31,9 @@ $color-text-tertiary: rgba(255, 255, 255, 0.7);
 $color-focus-ring: rgba(74, 222, 128, 0.5);
 
 // Gradientes
-$gradient-primary: linear-gradient(135deg, $color-primary, $color-primary-dark);
-$gradient-secondary: linear-gradient(135deg, $color-secondary, $color-secondary-dark);
+$gradient-primary: linear-gradient(90deg, $color-primary, $color-primary-dark);
+$gradient-secondary: linear-gradient(135deg, $color-secondary, $color-secondary-light);
+$gradient-title: linear-gradient(90deg, $color-primary, $color-primary-dark, $color-secondary, $color-secondary-light);
 $gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
 
 // Efectos
