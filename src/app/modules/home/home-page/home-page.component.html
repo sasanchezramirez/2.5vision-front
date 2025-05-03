@@ -46,84 +46,93 @@
       </div>
     </div>
 
-    <div class="card-header" [class.active-step]="currentStep === 1">
-      <div class="card-title">Paso 1: Carga tu imagen para análisis</div>
-    </div>
-    <div class="card-body">
-      <div class="upload-container data-visual" (click)="triggerFileInput()" (dragover)="onDragOver($event)" (drop)="onDrop($event)" *ngIf="!selectedFile">
-        <div class="data-dots"></div>
-        <input type="file" #fileInput hidden (change)="onFileSelected($event)" accept="image/*">
-        <div class="upload-content">
-          <div class="upload-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="17 8 12 3 7 8"></polyline>
-              <line x1="12" y1="3" x2="12" y2="15"></line>
-            </svg>
+    <!-- Paso 1 -->
+    <div class="step-container" [class.active]="currentStep === 1">
+      <div class="card-header" [class.active-step]="currentStep === 1">
+        <div class="card-title">Paso 1: Carga tu imagen para análisis</div>
+      </div>
+      <div class="card-body">
+        <div class="upload-container data-visual" (click)="triggerFileInput()" (dragover)="onDragOver($event)" (drop)="onDrop($event)" *ngIf="!selectedFile">
+          <div class="data-dots"></div>
+          <input type="file" #fileInput hidden (change)="onFileSelected($event)" accept="image/*">
+          <div class="upload-content">
+            <div class="upload-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+            </div>
+            <p class="upload-text">Arrastra y suelta una imagen aquí o haz clic para seleccionar</p>
           </div>
-          <p class="upload-text">Arrastra y suelta una imagen aquí o haz clic para seleccionar</p>
         </div>
-      </div>
 
-      <!-- Vista previa de la imagen -->
-      <div class="preview-container" *ngIf="selectedFile">
-        <div class="preview-image">
-          <img [src]="previewUrl" alt="Vista previa de la imagen">
-        </div>
-        <div class="preview-actions">
-          <button class="preview-button" (click)="removeSelectedFile()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-            Cambiar imagen
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card-header" [class.active-step]="currentStep === 2">
-      <div class="card-title">Paso 2: Da una estimación de visibilidad de 0 a 10</div>
-    </div>
-    <div class="card-body">
-      <div class="help-message info-box">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="info-icon">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="12" y1="16" x2="12" y2="12"></line>
-          <line x1="12" y1="8" x2="12.01" y2="8"></line>
-        </svg>
-        <p>Para evaluar la visibilidad: busca en tu foto el punto más lejano que puedas identificar (edificios, montañas, etc.) y valora qué tan claramente se ve a esa distancia.</p>
-      </div>
-      <div class="visibility-slider">
-        <div class="slider-value-display">
-          <span class="current-value" [style.left]="(visibilityValue / 10 * 100) + '%'">{{visibilityValue}}</span>
-        </div>
-        <label for="visibilitySlider" class="sr-only">Nivel de visibilidad</label>
-        <input type="range" min="0" max="10" step="1" [value]="visibilityValue" class="slider" id="visibilitySlider"
-               (input)="onVisibilityChange($event)" aria-valuemin="0" aria-valuemax="10" [attr.aria-valuenow]="visibilityValue">
-        <div class="slider-values">
-          <div><strong>0</strong><span class="slider-label">No se ve nada</span></div>
-          <div><strong>5</strong><span class="slider-label">Visibilidad media</span></div>
-          <div><strong>10</strong><span class="slider-label">Visibilidad perfecta</span></div>
-        </div>
-        <div class="slider-hints">
-          <p><strong>0:</strong> Densidad de niebla extrema, no se puede ver nada</p>
-          <p><strong>3:</strong> Se ve todo muy borroso, con bruma</p>
-          <p><strong>7:</strong> Buena visibilidad, cielo nítido</p>
-          <p><strong>10:</strong> Visibilidad perfecta, todo se ve extremadamente nítido</p>
+        <!-- Vista previa de la imagen -->
+        <div class="preview-container" *ngIf="selectedFile">
+          <div class="preview-image">
+            <img [src]="previewUrl" alt="Vista previa de la imagen">
+          </div>
+          <div class="preview-actions">
+            <button class="preview-button" (click)="removeSelectedFile()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+              Cambiar imagen
+            </button>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="card-header" [class.active-step]="currentStep === 3">
-      <div class="card-title">Paso 3: Ingresa una de las opciones que más se adecue al clima en este momento</div>
+    <!-- Paso 2 -->
+    <div class="step-container" [class.active]="currentStep === 2">
+      <div class="card-header" [class.active-step]="currentStep === 2">
+        <div class="card-title">Paso 2: Da una estimación de visibilidad de 0 a 10</div>
+      </div>
+      <div class="card-body">
+        <div class="help-message info-box">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="info-icon">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          <p>Para evaluar la visibilidad: busca en tu foto el punto más lejano que puedas identificar (edificios, montañas, etc.) y valora qué tan claramente se ve a esa distancia.</p>
+        </div>
+        <div class="visibility-slider">
+          <div class="slider-value-display">
+            <span class="current-value" [style.left]="(visibilityValue / 10 * 100) + '%'">{{visibilityValue}}</span>
+          </div>
+          <label for="visibilitySlider" class="sr-only">Nivel de visibilidad</label>
+          <input type="range" min="0" max="10" step="1" [value]="visibilityValue" class="slider" id="visibilitySlider"
+                (input)="onVisibilityChange($event)" aria-valuemin="0" aria-valuemax="10" [attr.aria-valuenow]="visibilityValue">
+          <div class="slider-values">
+            <div><strong>0</strong><span class="slider-label">No se ve nada</span></div>
+            <div><strong>5</strong><span class="slider-label">Visibilidad media</span></div>
+            <div><strong>10</strong><span class="slider-label">Visibilidad perfecta</span></div>
+          </div>
+          <div class="slider-hints">
+            <p><strong>0:</strong> Densidad de niebla extrema, no se puede ver nada</p>
+            <p><strong>3:</strong> Se ve todo muy borroso, con bruma</p>
+            <p><strong>7:</strong> Buena visibilidad, cielo nítido</p>
+            <p><strong>10:</strong> Visibilidad perfecta, todo se ve extremadamente nítido</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="card-body">
-      <div class="weather-options">
-        <div class="weather-grid">
-          <div class="weather-option" *ngFor="let option of weatherOptions">
-            <input type="radio" [id]="option.value" name="clima" [value]="option.value" [(ngModel)]="selectedWeather">
-            <label [for]="option.value">{{option.label}}</label>
+
+    <!-- Paso 3 -->
+    <div class="step-container" [class.active]="currentStep === 3">
+      <div class="card-header" [class.active-step]="currentStep === 3">
+        <div class="card-title">Paso 3: Ingresa una de las opciones que más se adecue al clima en este momento</div>
+      </div>
+      <div class="card-body">
+        <div class="weather-options">
+          <div class="weather-grid">
+            <div class="weather-option" *ngFor="let option of weatherOptions">
+              <input type="radio" [id]="option.value" name="clima" [value]="option.value" [(ngModel)]="selectedWeather">
+              <label [for]="option.value">{{option.label}}</label>
+            </div>
           </div>
         </div>
       </div>
@@ -181,36 +190,44 @@
 
   <h2 class="section-title">Ejemplos de Imágenes para Subir</h2>
   <div class="comparison-container">
-    <div class="comparison-item">
-      <div class="comparison-header correct">Ejemplo Correcto</div>
-      <div class="comparison-image">
-        <img src="assets/images/medellin-high-visibility.png" alt="Ejemplo de imagen correcta">
+    <div class="gradient-card">
+      <div class="gradient-card-header">
+        <div class="gradient-card-title correct-title">Ejemplo Correcto</div>
       </div>
-      <div class="comparison-explanation">
-        <p>
-          <strong>Imagen correcta:</strong>
-        </p>
-        <ul class="check-list correct">
-          <li>Muestra una referencia clara en el fondo</li>
-          <li>La iluminación es indirecta (no hay luz directa en la imagen)</li>
-          <li>Se ve una porción de cielo</li>
-        </ul>
+      <div class="gradient-card-body">
+        <div class="comparison-image">
+          <img src="assets/images/medellin-high-visibility.png" alt="Ejemplo de imagen correcta">
+        </div>
+        <div class="comparison-explanation">
+          <p>
+            <strong>Imagen correcta:</strong>
+          </p>
+          <ul class="check-list correct">
+            <li>Muestra una referencia clara en el fondo</li>
+            <li>La iluminación es indirecta (no hay luz directa en la imagen)</li>
+            <li>Se ve una porción de cielo</li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="comparison-item">
-      <div class="comparison-header incorrect">Ejemplo Incorrecto</div>
-      <div class="comparison-image">
-        <img src="assets/images/ejemplo-incorrecto.jpeg" alt="Ejemplo de imagen incorrecta">
+    <div class="gradient-card">
+      <div class="gradient-card-header">
+        <div class="gradient-card-title incorrect-title">Ejemplo Incorrecto</div>
       </div>
-      <div class="comparison-explanation">
-        <p>
-          <strong>Imagen incorrecta:</strong>
-        </p>
-        <ul class="check-list incorrect">
-          <li>El cielo ocupa toda la imagen</li>
-          <li>El sol está directo en la imagen</li>
-          <li>No hay referencia en el fondo</li>
-        </ul>
+      <div class="gradient-card-body">
+        <div class="comparison-image">
+          <img src="assets/images/ejemplo-incorrecto.jpeg" alt="Ejemplo de imagen incorrecta">
+        </div>
+        <div class="comparison-explanation">
+          <p>
+            <strong>Imagen incorrecta:</strong>
+          </p>
+          <ul class="check-list incorrect">
+            <li>El cielo ocupa toda la imagen</li>
+            <li>El sol está directo en la imagen</li>
+            <li>No hay referencia en el fondo</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

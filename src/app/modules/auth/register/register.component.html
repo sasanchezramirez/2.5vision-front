@@ -1,25 +1,12 @@
 <app-header></app-header>
 
 <div class="main-content pb-6">
-  <div class="insight-card">
-    <div class="card-header">
-      <div class="card-title">Crear Cuenta</div>
+  <div class="gradient-card">
+    <div class="gradient-card-header">
+      <div class="gradient-card-title">Crear Cuenta</div>
     </div>
 
-    <div class="card-body">
-      <div class="data-visual register-visual">
-        <div class="data-dots"></div>
-        <div class="data-line"></div>
-        <div class="register-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-            <circle cx="8.5" cy="7" r="4"></circle>
-            <line x1="20" y1="8" x2="20" y2="14"></line>
-            <line x1="23" y1="11" x2="17" y2="11"></line>
-          </svg>
-        </div>
-      </div>
-
+    <div class="gradient-card-body">
       <div class="register-form">
         <div *ngIf="errorMessage" class="error-message">
           {{ errorMessage }}
@@ -55,6 +42,27 @@
           <input type="text" id="contactInfo" placeholder="Ej: email@ejemplo.com o +123456789" [(ngModel)]="contactInfo">
         </div>
 
+        <!-- Sección de beneficios integrada -->
+        <div class="benefits-section">
+          <h3 class="benefits-title">¿Por qué crear una cuenta?</h3>
+          <div class="prize-announcement">
+            <div class="prize-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 21h8"></path>
+                <path d="M12 21v-4"></path>
+                <path d="M17 17H7"></path>
+                <path d="M17 13c0-3.87-3.13-7-7-7H7"></path>
+                <path d="M15 7c0 0 2-1 2-3"></path>
+              </svg>
+            </div>
+            <div class="prize-text">
+              <p>Si eres quien más sube imágenes hasta el 15 de junio del 2025...</p>
+              <span class="prize-highlight">¡GANARÁS UNA BOTELLA DE VINO!</span>
+              <p class="prize-note">jajaja es poco pero honesto.</p>
+            </div>
+          </div>
+        </div>
+
         <div class="custom-checkbox-container">
           <div class="custom-checkbox">
             <input type="checkbox" id="terms" [(ngModel)]="acceptTerms">
@@ -69,38 +77,15 @@
           </label>
         </div>
 
-        <button class="btn-register" [disabled]="!isFormValid() || isLoading" (click)="register()">
-          <span *ngIf="!isLoading">Crear Cuenta</span>
-          <span *ngIf="isLoading">Procesando...</span>
-        </button>
+        <div class="button-container">
+          <button class="gradient-button" [disabled]="!isFormValid() || isLoading" (click)="register()">
+            <span *ngIf="!isLoading">Crear Cuenta</span>
+            <span *ngIf="isLoading">Procesando...</span>
+          </button>
+        </div>
 
         <div class="login-link">
           ¿Ya tienes una cuenta? <a (click)="goToLogin()">Inicia Sesión</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="insight-card">
-    <div class="card-header">
-      <div class="card-title">Beneficios de tener una cuenta</div>
-    </div>
-    <div class="card-body">
-      <div class="prize-announcement">
-        <div class="prize-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 21h8"></path>
-            <path d="M12 21v-4"></path>
-            <path d="M17 17H7"></path>
-            <path d="M17 13c0-3.87-3.13-7-7-7H7"></path>
-            <path d="M15 7c0 0 2-1 2-3"></path>
-          </svg>
-        </div>
-        <div class="prize-text">
-          <h3>¡GANAR UN PREMIO!</h3>
-          <p>Si eres quien más sube imágenes hasta el 15 de junio del 2025...</p>
-          <span class="prize-highlight">¡GANARÁS UNA BOTELLA DE VINO!</span>
-          <p class="prize-note">jajaja es poco pero honesto.</p>
         </div>
       </div>
     </div>

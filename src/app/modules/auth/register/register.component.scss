@@ -1,3 +1,5 @@
+@use '../../../shared/styles/index' as styles;
+
 .logo {
   font-weight: 300;
   letter-spacing: -0.5px;
@@ -12,6 +14,10 @@
 
 .main-content {
   padding: var(--spacing-base);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .register-container {
@@ -323,34 +329,32 @@
 .prize-announcement {
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, rgba(74, 122, 150, 0.1) 0%, rgba(74, 122, 150, 0.3) 100%);
-  border-radius: var(--border-radius-sm);
+  background: linear-gradient(135deg, rgba(43, 43, 50, 0.6) 0%, rgba(33, 33, 38, 0.8) 100%);
+  border-radius: 16px;
   padding: var(--spacing-md);
-  border: 1px solid rgba(74, 122, 150, 0.4);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(218, 68, 83, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   position: relative;
   overflow: hidden;
-  animation: pulse 3s infinite;
-}
+  transition: all 0.3s ease;
 
-@keyframes pulse {
-  0% {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  }
-  50% {
-    box-shadow: 0 4px 20px rgba(74, 122, 150, 0.6);
-  }
-  100% {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    border-color: rgba(218, 68, 83, 0.3);
   }
 }
 
 .prize-icon {
   margin-right: var(--spacing-md);
-  color: var(--color-accent);
+  color: #E14D5A;
   flex-shrink: 0;
   position: relative;
   animation: wobble 5s ease-in-out infinite;
+  background: rgba(218, 68, 83, 0.1);
+  padding: 0.8rem;
+  border-radius: 50%;
+  border: 1px solid rgba(218, 68, 83, 0.3);
 }
 
 @keyframes wobble {
@@ -369,22 +373,21 @@
   flex: 1;
 
   h3 {
-    font-size: var(--font-size-lg);
+    font-size: 1.25rem;
     font-weight: 700;
     margin: 0 0 var(--spacing-xs);
-    color: #4ae54a;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-    letter-spacing: 1px;
+    color: #32e232;
+    letter-spacing: 0.5px;
   }
 
   p {
-    font-size: var(--font-size-base);
+    font-size: 0.95rem;
     margin: 0 0 var(--spacing-xs);
     color: rgba(255, 255, 255, 0.9);
   }
 
   .prize-note {
-    font-size: var(--font-size-sm);
+    font-size: 0.85rem;
     margin-top: var(--spacing-xs);
     color: rgba(255, 255, 255, 0.6);
     font-style: italic;
@@ -392,24 +395,18 @@
 
   .prize-highlight {
     display: inline-block;
-    font-size: var(--font-size-lg);
+    font-size: 1.1rem;
     font-weight: 700;
     margin-top: var(--spacing-xs);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-    letter-spacing: 0.5px;
-    transform: scale(1);
-    animation: highlight 2s infinite;
-    background: #32e232;
+    background: linear-gradient(to right, #32e232, #2cbb2c);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
-    border: 2px solid rgba(50, 226, 50, 0.5);
+    border: 1px solid rgba(50, 226, 50, 0.5);
     padding: 4px 8px;
-    border-radius: var(--border-radius-sm);
+    border-radius: 8px;
   }
 }
-
 
 @keyframes highlight {
   0%, 100% {
@@ -468,4 +465,70 @@ header {
   border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
   font-size: var(--font-size-sm);
   width: 100%;
+}
+
+// Estilos para el botón de registro
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0 1rem;
+  width: 100%;
+}
+
+.gradient-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #DA4453, #8B2A76);
+  border: none;
+  border-radius: 50px;
+  padding: 0.8rem 1.6rem;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 280px;
+
+  &:hover, &:focus {
+    background: linear-gradient(135deg, #C63C4A, #7A2567);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    background: linear-gradient(135deg, #888, #666);
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+.gradient-card {
+  @include styles.centered-container(480px);
+  margin: 1rem auto;
+  @include styles.smooth-transition;
+}
+
+// Estilos para la sección de beneficios integrada
+.benefits-section {
+  margin: 2rem 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.benefits-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #E14D5A;
+  margin: 0 0 1rem 0;
+  text-align: center;
 }
