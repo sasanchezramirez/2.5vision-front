@@ -606,6 +606,9 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: transparent;
 
   .slider-value-display {
     position: relative;
@@ -1311,7 +1314,7 @@ header {
 }
 
 // Añadiendo estilos para el cuerpo y los controles dentro para mejor contraste y legibilidad
-.help-message, .slider-hints, .visibility-slider, .weather-grid, .preview-container {
+.help-message, .slider-hints, .weather-grid, .preview-container {
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   padding: 1rem;

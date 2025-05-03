@@ -45,10 +45,16 @@ header {
   gap: 0.5rem;
   color: var(--text-1);
   font-size: 0.9rem;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
 }
 
 .username {
   font-weight: 500;
+  color: white;
 }
 
 .user-avatar {
@@ -58,17 +64,12 @@ header {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: var(--gradient-primary);
+  background: transparent;
   color: white;
   overflow: hidden;
 
   &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--gradient-primary);
-    opacity: 0.8;
-    z-index: -1;
+    content: none;
   }
 }
 
