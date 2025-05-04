@@ -19,7 +19,7 @@
 
             <div *ngIf="!isLoading && !errorMessage" class="stat-display">
               <div class="contribution-number">{{ displayedContributions }}</div>
-              <div class="contribution-label">imágenes subidas</div>
+              <div class="contribution-label" *ngIf="totalImagesUploaded > 0">de un total de {{ totalImagesUploaded }} imágenes cargadas</div>
             </div>
 
             <div *ngIf="!isLoading && errorMessage" class="error-message">

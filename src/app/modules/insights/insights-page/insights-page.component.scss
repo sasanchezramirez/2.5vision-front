@@ -152,6 +152,13 @@ $bronze: #CD7F32;
   margin-bottom: 1rem;
 }
 
+.total-images-label {
+  font-size: 0.9rem;
+  color: $text-muted;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
 // Leaderboard card styles
 .leaderboard-card {
   .card-header {

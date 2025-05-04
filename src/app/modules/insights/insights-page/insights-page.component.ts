@@ -21,6 +21,7 @@ export class InsightsPageComponent implements OnInit {
   errorMessage: string | null = null;
   contributorsError: string | null = null;
   animationStarted: boolean = false;
+  totalImagesUploaded: number = 0;
 
   constructor(
     private router: Router,
@@ -34,6 +35,9 @@ export class InsightsPageComponent implements OnInit {
 
     // Cargar datos de top contribuidores
     this.loadTopContributors();
+
+    // Cargar total de imágenes
+    this.loadTotalImagesUploaded();
   }
 
   loadUserContributions(): void {
@@ -132,5 +136,18 @@ export class InsightsPageComponent implements OnInit {
   isCurrentUser(username: string): boolean {
     const currentUser = this.authService.getUsername();
     return currentUser?.toLowerCase() === username?.toLowerCase();
+  }
+
+  // Carga el total de imágenes subidas
+  loadTotalImagesUploaded(): void {
+    this.masterdataService.getTotalImagesUploaded().subscribe({
+      next: (total) => {
+        this.totalImagesUploaded = total;
+      },
+      error: (error) => {
+        console.error('Error al cargar total de imágenes:', error);
+        this.totalImagesUploaded = 0;
+      }
+    });
   }
 }
