@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SharedModule } from '../../../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { MasterdataService, Contributor } from '../../../services/masterdata.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-insights-page',
@@ -23,7 +24,8 @@ export class InsightsPageComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private masterdataService: MasterdataService
+    private masterdataService: MasterdataService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -124,5 +126,11 @@ export class InsightsPageComponent implements OnInit {
         clearInterval(timer);
       }
     }, interval);
+  }
+
+  // Verifica si el nombre de usuario es el del usuario actual
+  isCurrentUser(username: string): boolean {
+    const currentUser = this.authService.getUsername();
+    return currentUser?.toLowerCase() === username?.toLowerCase();
   }
 }

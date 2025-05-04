@@ -48,13 +48,14 @@
 
           <div *ngIf="!contributorsLoading && !contributorsError && topContributors.length > 0" class="leaderboard-list">
             <!-- Lista de contribuidores -->
-            <div class="contributor-item" *ngFor="let contributor of topContributors; let i = index">
+            <div class="contributor-item" *ngFor="let contributor of topContributors; let i = index"
+                 [ngClass]="{'current-user-highlight': isCurrentUser(contributor.username)}">
               <div class="position-badge-wrapper">
                 <div class="position-badge-gradient" [style.background]="i === 0 ? 'linear-gradient(90deg, #DA4453, #8B2A76)' : (i === 1 ? 'linear-gradient(90deg, #DA4453, #8B2A76)' : 'linear-gradient(90deg, #DA4453, #8B2A76)')"></div>
                 <div class="position-badge">{{ i + 1 }}</div>
               </div>
               <div class="contributor-details">
-                <div class="contributor-name">{{ maskUsername(contributor.username) }}</div>
+                <div class="contributor-name">{{ isCurrentUser(contributor.username) ? contributor.username : maskUsername(contributor.username) }}</div>
                 <div class="contributor-score">{{ contributor.total_images_uploaded }} Imágenes</div>
               </div>
             </div>

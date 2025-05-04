@@ -7,6 +7,7 @@ $card-border: rgba(255, 255, 255, 0.08);
 $text-primary: #ffffff;
 $text-secondary: rgba(255, 255, 255, 0.7);
 $text-muted: rgba(255, 255, 255, 0.5);
+$highlight-green: #4CAF50;
 
 $gradient-title: linear-gradient(90deg, #DA4453, #8B2A76, #6C5CE7, #a29bfe);
 
@@ -333,5 +334,46 @@ $bronze: #CD7F32;
 
   .contributor-score {
     font-size: 0.85rem;
+  }
+}
+
+// Animación flotante para el usuario actual
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+    box-shadow: 0 5px 15px 0px rgba(76, 175, 80, 0.2);
+  }
+  50% {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px 0px rgba(76, 175, 80, 0.3);
+  }
+  100% {
+    transform: translateY(0px);
+    box-shadow: 0 5px 15px 0px rgba(76, 175, 80, 0.2);
+  }
+}
+
+// Estilo para destacar al usuario actual en la lista
+.current-user-highlight {
+  background-color: rgba(76, 175, 80, 0.1) !important;
+  border: 1px solid rgba(76, 175, 80, 0.3) !important;
+  animation: float 3s ease-in-out infinite;
+
+  .contributor-name {
+    color: $highlight-green !important;
+    font-weight: 700 !important;
+  }
+
+  .position-badge-gradient {
+    background: linear-gradient(90deg, #4CAF50, #2E7D32) !important;
+  }
+
+  .position-badge {
+    border-color: rgba(76, 175, 80, 0.5) !important;
+  }
+
+  &:hover {
+    background-color: rgba(76, 175, 80, 0.15) !important;
+    border-color: rgba(76, 175, 80, 0.4) !important;
   }
 }
