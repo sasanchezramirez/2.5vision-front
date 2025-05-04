@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from '../../../services/users.service';
 import { NewUserInput } from '../../../models/auth/user-registration.model';
@@ -8,7 +8,7 @@ import { NewUserInput } from '../../../models/auth/user-registration.model';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   fullname: string = '';
   email: string = '';
   username: string = '';
@@ -19,6 +19,7 @@ export class RegisterComponent {
   errorMessage: string = '';
   successMessage: string = '';
   isLoading: boolean = false;
+  usernameHasSpaces: boolean = false;
 
   // Por defecto, usamos estos valores para el registro
   private defaultProfileId: number = 1;
@@ -29,9 +30,19 @@ export class RegisterComponent {
     private usersService: UsersService
   ) {}
 
+  ngOnInit(): void {
+    // Validar username inicialmente
+    this.validateUsername();
+  }
+
+  validateUsername(): void {
+    this.usernameHasSpaces = this.username.includes(' ');
+  }
+
   isFormValid(): boolean {
     return (
       this.username.trim() !== '' &&
+      !this.usernameHasSpaces &&
       this.password.trim() !== '' &&
       this.password.length >= 8 &&
       this.password === this.confirmPassword &&
@@ -44,6 +55,14 @@ export class RegisterComponent {
     // Reiniciar mensajes
     this.errorMessage = '';
     this.successMessage = '';
+
+    // Verificar espacios en el username antes de continuar
+    this.validateUsername();
+
+    if (this.usernameHasSpaces) {
+      this.errorMessage = 'El nombre de usuario no puede contener espacios';
+      return;
+    }
 
     if (this.isFormValid()) {
       this.isLoading = true;
@@ -77,6 +96,8 @@ export class RegisterComponent {
       // Mostrar un mensaje de error si el formulario no es válido
       if (!this.username.trim()) {
         this.errorMessage = 'Por favor ingresa un nombre de usuario';
+      } else if (this.usernameHasSpaces) {
+        this.errorMessage = 'El nombre de usuario no puede contener espacios';
       } else if (!this.password.trim()) {
         this.errorMessage = 'Por favor ingresa una contraseña';
       } else if (this.password.length < 8) {
