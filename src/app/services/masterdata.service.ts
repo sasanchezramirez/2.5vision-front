@@ -53,6 +53,18 @@ export class MasterdataService {
   }
 
   /**
+   * Obtiene el total de imágenes subidas a la plataforma
+   * @returns Observable con el número total de imágenes
+   */
+  getTotalImagesUploaded(): Observable<number> {
+    return this.http.get<ApiResponse<number>>(
+      `${this.apiUrl}/masterdata/total-images-uploaded`
+    ).pipe(
+      map(response => response.data)
+    );
+  }
+
+  /**
    * Enmascara un nombre de usuario mostrando solo primera y última letra
    * @param username Nombre de usuario completo
    * @returns Nombre de usuario enmascarado

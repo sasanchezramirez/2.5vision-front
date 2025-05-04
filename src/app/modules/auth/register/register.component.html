@@ -18,7 +18,10 @@
 
         <div class="form-group">
           <label for="username">Nombre de Usuario</label>
-          <input type="text" id="username" placeholder="Elige un nombre de usuario" [(ngModel)]="username">
+          <input type="text" id="username" placeholder="Elige un nombre de usuario" [(ngModel)]="username" (input)="validateUsername()">
+          <div class="validation-message" *ngIf="usernameHasSpaces">
+            El nombre de usuario no puede contener espacios
+          </div>
         </div>
 
         <div class="form-group">
